@@ -52,11 +52,19 @@
                             <input value= "<?php echo $class_title ?>" type="text" class="form-control" id="class_title" placeholder="Chủ đề" name="class_title" required>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-danger btn-lg btn-block" onclick="goToGiaoVienPage()">Hủy</button>
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Tạo</button>      
 
-                    <button class="btn btn-success btn-lg btn-block" type="submit">Tạo</button>                 
              
             </div>
         </form>
+        <script>
+                function goToGiaoVienPage() {
+                    event.preventDefault();
+                    window.history.back();
+                return false;
+                }
+        </script>
 
     </div> 
 

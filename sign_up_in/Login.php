@@ -89,7 +89,7 @@
                     </div>
                     <!--Khi nhấn nút cancel thì đóng form đăng ký lại-->
                 <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btnCancel">Cancel</button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btnCancel">Hủy</button>
                     <button type="submit" class= "btnOnClick">Đăng ký</button>
                 </div>
                 </div>

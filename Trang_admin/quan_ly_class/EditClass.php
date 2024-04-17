@@ -35,28 +35,28 @@
                     ?>
                 </h2> 
                 <div>
-                    <label for="userid"><b>Class ID</b></label>
-                    <input type="text" name="userid" value = "<?php echo $_GET['id']?>" required>
+                    <label for="id"><b>Class ID</b></label>
+                    <input type="text" name="id" value = "<?php echo $_GET['id']?>" required>
                 </div>
 
                 <div>
-                    <label for="email"><b>Class Name</b></label>
-                    <input type="text" name="email" value = "<?php echo $_GET['class_name']?>" required>
+                    <label for="class_name"><b>Class Name</b></label>
+                    <input type="text" name="class_name" value = "<?php echo $_GET['class_name']?>" required>
                 </div>                
                 
                 <div>
-                    <label for="username"><b>Class Title</b></label>
-                    <input type="text" name="username" value = "<?php echo $_GET['class_title']?>" required>
+                    <label for="class_title"><b>Class Title</b></label>
+                    <input type="text" name="class_title" value = "<?php echo $_GET['class_title']?>" required>
                 </div>
                 
                 <div>
-                    <label for="psw1"><b>Lecturer Name</b></label>
-                    <input type="text" name="psw1" value = "<?php echo $_GET['lecturer']?>" required>
+                    <label for="lecturer"><b>Lecturer Name</b></label>
+                    <input type="text" name="lecturer" value = "<?php echo $_GET['lecturer']?>" required>
                 </div>
                 
                 <!--Khi nhấn nút cancel thì đóng form đăng ký lại-->
             <div class="clearfix">
-                
+                <button type="button" class="btn btn-danger btn-lg btn-block"" onclick="goToAdminPage()">Cancel</button>
                 <button type="submit" class= "btnOnClick btn btn-primary btn-lg btn-block">Update</button>
                 
             </div>
@@ -64,6 +64,15 @@
     
             </div>
         </form>
+        <script>
+                function goToAdminPage() {
+                    // Prevent default form submission
+                    event.preventDefault();
+                    // You can optionally add other logic here, like showing a confirmation message
+                    window.location.href = "QuanLyClass.php";
+                return false;
+                }
+            </script>
     </div>
     
   </body>

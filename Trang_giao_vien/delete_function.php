@@ -4,22 +4,20 @@
 	 */
 	require "connect.php";
 
-	// Assign username and userid ready to give it a fold back in header
-	$username = $_GET['username'];
-	$userid = $_GET['userid'];
+	$class_id = $_POST['class_id']; // Giả sử class_id là khóa chính của bảng
 
-	$id = $_GET["id"];
+	// Các trường dữ liệu mới từ form sửa đổi
+	$class_name = $_POST['class_name'];
+	$class_title = $_POST['class_title'];
+	$class_code = $_POST['class_code'];
+	$lecturer = $_POST['lecturer'];
+	// Câu lệnh SQL để cập nhật thông tin lớp học
+	$sql = "UPDATE classes SET class_name='$class_name', class_title='$class_title', class_code='$class_code', lecturer='$lecturer' WHERE id='$class_id'";
 
-	$sql1 = "DELETE FROM `posts` WHERE `class_id`=$id";
-	// Add sql to remove class from class_list by using class_id  
-	$sql3 = "DELETE FROM `class_list` WHERE `class_id`=$id";
-	$sql2 = "DELETE FROM `classes` WHERE `id`=$id";
-
-	if ($connection->query($sql1) === TRUE) {
-		if ($connection->query($sql3) === TRUE) {
-			if ($connection->query($sql2) === TRUE) {
-				header("Location: TrangNguoiDung.php?username=$username&&userid=$userid");
-			}
-		}
+	// Thực thi câu lệnh SQL và kiểm tra kết quả
+	if ($conn->query($sql) === TRUE) {
+		echo "Thông tin lớp học đã được cập nhật thành công";
+	} else {
+		echo "Lỗi: " . $sql . "<br>" . $conn->error;
 	}
 ?>

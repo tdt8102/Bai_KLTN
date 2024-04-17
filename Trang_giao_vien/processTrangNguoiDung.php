@@ -73,9 +73,9 @@ if (mysqli_num_rows($check_column_result) == 0) {
             require("TrangNguoiDung.php");
         }
         
-    } else {
-        echo "Error: " . $sql . "<br>" . $connection->error;
-        $connection->close();
+        } else {
+            echo "Error: " . $sql . "<br>" . $connection->error;
+            $connection->close();
+        }
     }
-}
 ?>

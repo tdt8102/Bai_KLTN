@@ -59,15 +59,15 @@
  
              <div class="form">
                 <div class="item_form2">
-                    <h5>Mã lớp</h5>
-                    <p>Đề nghị giáo viên của bạn cung cấp mã lớp rồi nhập mã
+                    <h5>Mã lớp(class id)</h5>
+                    <p>Đề nghị giáo viên của bạn cung cấp mã lớp(class id) rồi nhập mã
                         vào đây
                     </p>   
                         <?php
                             $userid = $_GET['userid'];
                         ?>
                         <form action="addLophoc.php?userid=<?php echo $userid?>&&username=<?php echo $_GET['username']?>" method = "post">
-                            <input id="code_Class" type="text" placeholder="Mã lớp" name="code_Class" required>
+                            <input id="code_Class" type="text" placeholder="Mã lớp(class id)" name="code_Class" required>
                             <button type = "submit" id="btn_Thamgia">Tham gia</button>
                         </form>
                 </div>

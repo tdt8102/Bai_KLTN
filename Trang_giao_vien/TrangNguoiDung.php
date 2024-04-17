@@ -136,11 +136,11 @@
 
         <nav class="navbar navbar-expand-sm navbar-dark bg-info">
 
-         <a class="navbar-brand" href="#">
+         <span class="navbar-brand" href="#" onclick="goToAdminPage()">
             <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
             Hanoi University of Natural Resources and Environment
-         </a>
-
+    </span>
+        
          <ul class="navbar-nav ml-auto">
              <li class="nav-item dropdown">
                <a class="nav-link Join"href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" title="Tạo hoặc tham gia vào lớp học"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -231,8 +231,11 @@
                     </div>                 
                     <div class="card-body">
                         <h5 class="card-title p1" style="font-size:15px">Chủ đề: <?php echo $row1["class_title"]?></h5>
-                        <p class="card-text text-dark " style="font-size:15px">
+                        <p class="card-text text-dark " style="font-size:15px">Tên giảng viên:
                             <b> <?php echo $row1["lecturer"]; ?></b>
+                        </p>
+                        <p class="card-text text-dark " style="font-size:15px">Mã lớp(class id):
+                            <b> <?php echo $row1["id"]; ?></b>
                         </p>
                     </div>
                     

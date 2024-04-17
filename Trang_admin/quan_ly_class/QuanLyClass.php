@@ -19,11 +19,10 @@
     <link rel="stylesheet" href="../css/TrangThamGiaLopHoc.css"/>
     <script src="../js/Collapse_sidebar.js"></script>
 
-    <title>Quan Ly lop hoc</title>
+    <title>Quản lý lớp học</title>
     
 </head>
 <body>
-   <!--Modal Tham gia lớp học bằng mã code-->
     <div class="modal fade right" id="ModalJoinClass" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
         <div class="modal-content-full-width modal-content ">
@@ -32,7 +31,7 @@
                  <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                      <span style="font-size: 1.8em;" aria-hidden="true">&times;</span>
                  </button>
-                 <a class= "navbar-brand" href=""> Thêm user vào hệ thống</a>
+                 <a class= "navbar-brand" href=""> Thêm lớp học vào hệ thống</a>
                
             </nav>
            </div>
@@ -41,7 +40,7 @@
             <div class="form">
                 <div class="item_form1">
                     
-                    <form method="post" action = "ThemUser.php">
+                    <form method="post" action = "TaoLopHoc.php">
                         <div class="container">
                             <h2>Be wise when you invite someone in</h2> 
                             <div>
@@ -145,7 +144,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <a href="../TrangAdmin.php">Quản lý Users</a>
                 <a href="QuanLyClass.php">Quản lý Classes</a>
-                <a href="QuanLyPost.php">Quản lý Posts</a>
+                <!-- <a href="../QuanLyPost.php">Quản lý Posts</a> -->
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -164,10 +163,10 @@
                     <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg></a>
                     <div class="dropdown-menu dropdown-menu-right" >
-                        <a id="modalActivate"  data-toggle="modal" data-target="#ModalJoinClass" href="" class="dropdown-item" href="#">Thêm lớp học</a>
+                        <!-- <a id="modalActivate"  data-toggle="modal" data-target="#ModalJoinClass" href="" class="dropdown-item" href="#">Thêm lớp học</a>
                         
                         <a onclick= "document.getElementById('id01').style.display='block'"
-                        style="width:100%;" class="dropdown-item" href="PhanQuyenuser.php">---</a>
+                        style="width:100%;" class="dropdown-item" href="PhanQuyenuser.php">---</a> -->
                     </div>
                 </li>
             </ul>
@@ -218,7 +217,7 @@
                 <td><?php echo $row['lecturer'];?></td>
                 <td>
                     <a href="EditClass.php?id=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?> && class_title=<?php echo $row['class_title'];?> && lecturer=<?php echo $row['lecturer'];?>">Update</a>
-                    <a href="XoaUser.php?id_delete=<?php echo $row['user_id'];?> && username=<?php echo $row['username'];?>">Delete</a>
+                    <a href="XoaClass.php?id_delete=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?>">Delete</a>
                 </td>
             </tr>
 

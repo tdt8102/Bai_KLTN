@@ -22,11 +22,27 @@
         if ($user['username'] === $username) {
             $message = "Username already exists" ;
             echo $message;
+            echo "<button onclick=\"Trở lại()\">Go Back</button>";
+            
+            // JavaScript function to go back
+            echo "<script>
+                    function goBack() {
+                        window.history.back();
+                    }
+                  </script>";
         }
 
         else if ($user['email'] === $email) {
             $message = "Email already exists";
             echo $message;
+            echo "<button onclick=\"Trở lại()\">Go Back</button>";
+            
+            // JavaScript function to go back
+            echo "<script>
+                    function goBack() {
+                        window.history.back();
+                    }
+                  </script>";
         }
     }
 

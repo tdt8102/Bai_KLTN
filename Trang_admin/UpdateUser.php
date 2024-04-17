@@ -92,20 +92,24 @@
                 
                 <!--Khi nhấn nút cancel thì đóng form đăng ký lại-->
             <div class="clearfix">
-                <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="goToAdminPage()">Cancel</button>
+                <button type="button" class="btn btn-danger btn-lg btn-block" onclick="goToAdminPage()">Hủy</button>
 
-                <button type="submit" class= "btnOnClick btn btn-primary btn-lg btn-block">Update</button>
+                <button type="submit" class= "btnOnClick btn btn-primary btn-lg btn-block">Cập nhật</button>
                 
             </div>
                 
     
             </div>
         </form>
-        <script>
-    function function goToAdminPage() {
-        window.location.href = "TrangAdmin.php";
-    }
-</script>
+            <script>
+                function goToAdminPage() {
+                    // Prevent default form submission
+                    event.preventDefault();
+                    // You can optionally add other logic here, like showing a confirmation message
+                    window.location.href = "TrangAdmin.php";
+                return false;
+                }
+            </script>
     </div>
     
   </body>

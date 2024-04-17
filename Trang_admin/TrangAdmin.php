@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if($_SESSION["email"]){
+    if(isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
 
 ?>
 
@@ -41,10 +41,9 @@
              
             <div class="form">
                 <div class="item_form1">
-                    
                     <form method="post" action = "ThemUser.php">
                         <div class="container">
-                            <h2>Be wise when you invite someone in</h2> 
+                            <h2>Hãy cân nhắc khi thêm ai đó vào</h2> 
                             <div>
                                 <label for="username"><b>Username</b></label>
                                 <input type="text" name="username" required>
@@ -62,7 +61,7 @@
                             
                             <div>
                                 <label for="name"><b>Họ và tên</b></label>
-                                <input value= "<?php echo $fullname ?>" type="text" placeholder="Nhập họ và tên" id="fullname" name="fullname" required>
+                                <input value="<?php echo isset($fullname) ? $fullname : ''; ?>" type="text" placeholder="Nhập họ và tên" id="fullname" name="fullname" required> 
                             </div>    
                             
                             <div>
@@ -146,7 +145,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <a href="TrangAdmin.php">Quản lý Users</a>
                 <a href="./quan_ly_class/QuanLyClass.php">Quản lý Classes</a>
-                <a href="QuanLyPost.php">Quản lý Posts</a>
+                <!-- <a href="./QuanLyPost.php">Quản lý Posts</a> -->
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -184,7 +183,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" >
                 <a class="dropdown-item" href="#">Tài khoản của tôi</a>
-                <a class="dropdown-item" href="#">Đăng nhập bằng tài khoản khác</a>
+                <a class="dropdown-item" href="#"></a>
                 <a class="dropdown-item" href="logout.php">Đăng xuất</a>
                 </div>
                 </li>
@@ -194,6 +193,7 @@
     <?php require_once("connect.php");?>
 
     <?php
+        require_once("connect.php");
         $sql = 'SELECT * FROM `users`';
         $result = $connection->query($sql) or die(mysqli_error($connection));
     ?>
@@ -261,7 +261,26 @@
     </section>
     
 
+    <?php 
+        // Thiết lập kết nối MySQLi
+        require_once("connect.php");
 
+        // Kiểm tra xem kết nối có hoạt động không
+        if(mysqli_ping($connection)) {
+            // Thực hiện truy vấn
+            $sql = 'SELECT * FROM `users`';
+            $result = $connection->query($sql) or die(mysqli_error($connection));
+
+            // Hiển thị kết quả
+            // Mã HTML cho bảng của bạn ở đây...
+        } else {
+            // Xử lý lỗi kết nối
+            echo "Máy chủ MySQL không khả dụng.";
+        }
+
+        // Đóng kết nối MySQLi
+        $connection->close();
+    ?>
 </body>
 </html>
 
