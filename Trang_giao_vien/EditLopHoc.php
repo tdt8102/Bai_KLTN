@@ -57,7 +57,7 @@
 
                   
              
-
+                    <button class="btn btn-danger btn-lg btn-block" type="button" onclick="window.history.back()">Hủy</button>
                     <button class="btn btn-success btn-lg btn-block" type="submit">Chỉnh sửa</button>                 
              
             </div>

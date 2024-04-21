@@ -16,25 +16,23 @@
   <body>
      <!--Thanh navbar-->
      <nav class="navbar navbar-expand-sm navbar-dark bg-info">
-
-       
-           
-           <a class="navbar-brand" href="TrangNguoiDung.php">
+           <a class="navbar-brand" href="TrangNguoiDung.php?userid=<?php echo $userid?>"">
               <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
               Hanoi University of Natural Resources and Environment
            </a>
-              <div class="topnav">
-                 <?php
-                     // Get class id and userid
-                     $id = $_GET['id'];
-                     $userid = $_GET['userid'];
-                 ?>
-                <a class="nav-item " href="Trangbaitap.php">Bài tập trên lớp</a>
-                <a href="classlist.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách học sinh</a>
-              </div>
+           <div class="topnav">
+               <?php
+               // Kiểm tra xem biến $_GET['userid'] có tồn tại không trước khi sử dụng
+               $userid = isset($_GET['userid']) ? $_GET['userid'] : ''; // Nếu không tồn tại, gán giá trị rỗng
+               // Get class id and userid
+               $id = $_GET['id'];
+               ?>
+               <a class="nav-item" href="Trangbaitap.php">Bài tập trên lớp</a>
+               <a href="classlist.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách học sinh</a>
+            </div>
         
            <ul class="navbar-nav ml-auto">
-              <!--
+              
               <li class="nav-item dropdown">
                  <a class="nav-link avatar "
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,12 +43,10 @@
                   </svg>
                  </a>
                <div class="dropdown-menu dropdown-menu-right" >
-                 <a class="dropdown-item" href="#">Tài khoản của tôi</a>
-                 <a class="dropdown-item" href="#">Đăng nhập bằng tài khoản khác</a>
-                 <a class="dropdown-item" href="#">Đăng xuất</a>
+                 <a class="dropdown-item textAccount textLogout " href="logout.php">Đăng xuất khỏi tài khoản</a>
                </div>
               </li>
-               -->
+              
            </ul>
         </nav>
 
@@ -70,13 +66,14 @@
                                  $class_id = $_GET['id'];
                                  require('connect.php');
 
-                                 $sql = "SELECT `id`, `class_name` from classes where `id` = '$class_id'";
+                                 $sql = "SELECT `id`, `class_name`, `class_title` from classes where `id` = '$class_id'";
       
                                  $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
                                  $row = mysqli_fetch_array($result);
                               
                                  echo "<p class=\"card-text text-light displaySubject \">$row[1]</p>";
                                  echo "<p class=\"card-text text-light\">Mã lớp học: $row[0]</p>";
+                                 echo "<p class=\"card-text text-light\">Chủ đề: $row[2]</p>";
                               ?>
                            </div>
                         </div>
@@ -109,13 +106,14 @@
                   }
                   ?>      
                      <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                           <div class="form-group shadow-textarea">
-                              <label for="exampleFormControlTextarea1"></label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" 
-                              value="<?php echo $post_content ?>" name="post_content" id="post_content" placeholder="Thông báo nội dung nào đó cho lớp học của bạn" ></textarea> 
-                              <input class="form-control-sm"  type="file"/> 
-                              <button type="submit" class="btn_Post"> Đăng bài</button>
-                           </div>
+                     <div class="form-group shadow-textarea">
+                        
+                        <label for="exampleFormControlTextarea1"></label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="post_content" id="post_content" placeholder="Thông báo nội dung nào đó cho lớp học của bạn"><?php echo $post_content ?></textarea>
+                        <input class="form-control-sm" type="file" name="file_upload"/>
+                        <button type="submit" class="btn_Post">Đăng bài</button>
+                     </div>
+
                      </div> 
 
             </form>    
@@ -138,22 +136,35 @@
                                     <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                     <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
                                  </svg>
-                                 <?php
-                                    /** Generally focusing on that getting fullname and passing stuffs*/
-                                    // Get username related to the post
-                                    
-                                    $username = $_GET["username"];
-                                    // get fullname from username to display on post
-                                    $get_fullname = "SELECT `fullname`, `user_id` from `users` where `username` = '$username';";
-                                    $get_fullname_result = mysqli_query($connection, $get_fullname) or die(mysqli_error($connection));
-                                    $get_fullname_fetch = mysqli_fetch_array($get_fullname_result);
-
-                                    // Assign fullname here
-                                    $fullname = $get_fullname_fetch[0];
-                                    echo "<p class = \"d-inline\">$fullname</p>";
-                                 ?>
                                  <p class="p1">
                                     <p class= "c">
+                                    <?php
+                                    // Kiểm tra xem 'userid' đã được truyền vào hay chưa
+                                    $user_id = isset($_GET["userid"]) ? $_GET["userid"] : null;
+
+                                    // Kiểm tra xem 'id' đã được truyền vào hay chưa
+                                    if(isset($_GET["id"])) {
+                                       $post_id = $_GET["id"];
+
+                                       // Sử dụng prepared statements để ngăn chặn SQL injection
+                                       $get_fullname = "SELECT `fullname` FROM `users` WHERE `user_id` = ?";
+                                       $stmt = mysqli_prepare($connection, $get_fullname);
+                                       mysqli_stmt_bind_param($stmt, "i", $user_id); // giả sử user_id là kiểu integer
+                                       mysqli_stmt_execute($stmt);
+                                       $get_fullname_result = mysqli_stmt_get_result($stmt);
+
+                                       // Kiểm tra xem có kết quả trả về không
+                                       if(mysqli_num_rows($get_fullname_result) > 0) {
+                                             $get_fullname_fetch = mysqli_fetch_array($get_fullname_result);
+                                             $fullname = $get_fullname_fetch[0];
+                                             echo "<p class=\"d-inline\">$fullname</p>";
+                                       } else {
+                                             echo "Không tìm thấy người dùng với user_id này.";
+                                       }
+                                    } else {
+                                       echo "Tham số 'id' không được truyền vào.";
+                                    }
+                                 ?>
                                        <?php echo $row["post_content"] ?>
                                     </p>
                                     <a class="btn btn-warning" role="button" href="delete_posts.php?id=<?php echo $row["id"];?> && class_id=<?php echo $_GET['id']?>&&username=<?php echo $_GET['username'];?>" class="delete">Xóa bài</a>

@@ -145,7 +145,7 @@
                                     <p class= "c">
                                        <?php echo $row["post_content"] ?>
                                     </p>
-                                    <a class="btn btn-warning" role="button" href="delete_posts.php?id=<?php echo $row["id"];?> && class_id=<?php echo $_GET['id']?>&&username=<?php echo $_GET['username'];?>" class="delete">Xóa bài</a>
+                                    <!-- <a class="btn btn-warning" role="button" href="delete_posts.php?id=<?php echo $row["id"];?> && class_id=<?php echo $_GET['id']?>&&username=<?php echo $_GET['username'];?>" class="delete">Xóa bài</a> -->
                                  </p>
                                 <hr>
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

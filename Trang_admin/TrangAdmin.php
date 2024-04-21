@@ -154,7 +154,7 @@
                 </svg> </button>  
             </div>
             <a class="navbar-brand" href="#">
-                <img src="image/cap-1.png" width="60" height="35" class="d-inline-block align-top" alt="">
+                <img src="image/cap-1.png" width="35" height="35" class="d-inline-block align-top" alt="">
                 Admin Panel
             </a>
 

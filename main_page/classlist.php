@@ -17,10 +17,10 @@
 <body>
     <!--Thanh navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="class.php?userid=<?php echo $_GET['userid']?>">
+            <span class="navbar-brand" href="class.php?userid=<?php echo $_GET['userid']?>">
                 <img src="./image/HUNRE_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 Hanoi University of Natural Resources and Environment
-            </a>
+            </span>
                 <div class="topnav">
                     <?php
                         // Get class id and userid
