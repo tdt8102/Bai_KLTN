@@ -1,3 +1,9 @@
+<?php
+    // Bắt đầu hoặc khôi phục phiên (session)
+    session_start();
+
+    // Các mã PHP khác ở đây
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +22,7 @@
   <body>
      <!--Thanh navbar-->
      <nav class="navbar navbar-expand-sm navbar-dark bg-info">
-           <a class="navbar-brand" href="TrangNguoiDung.php?userid=<?php echo $userid?>"">
+           <a class="navbar-brand" href="TrangNguoiDung.php?username=<?php echo $username?> && userid=<?php echo $userid?>"">
               <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
               Hanoi University of Natural Resources and Environment
            </a>
@@ -97,7 +103,7 @@
                   if (isset($_GET["id"])){
                      $id = $_GET["id"];
                      require "connect.php";
-                     $sql = "SELECT * FROM `posts` WHERE id = '$id';";
+                     $sql = "SELECT * FROM `posts` WHERE id_cmt = '$id';";
                      $result = $connection->query($sql) or die($connection->error);
 
                      //$row= $result->fetch_assoc();
@@ -112,6 +118,9 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="post_content" id="post_content" placeholder="Thông báo nội dung nào đó cho lớp học của bạn"><?php echo $post_content ?></textarea>
                         <input class="form-control-sm" type="file" name="file_upload"/>
                         <button type="submit" class="btn_Post">Đăng bài</button>
+
+
+                        <!-- <iframe src="binhluan.php?class_id=<?=$_GET['id']?>" width="100%" height="400px"  frameborder="0"></iframe> -->
                      </div>
 
                      </div> 
@@ -139,36 +148,103 @@
                                  <p class="p1">
                                     <p class= "c">
                                     <?php
-                                    // Kiểm tra xem 'userid' đã được truyền vào hay chưa
-                                    $user_id = isset($_GET["userid"]) ? $_GET["userid"] : null;
+                                       $user_id = isset($_GET["userid"]) ? $_GET["userid"] : null;
+                                       $class_id = isset($_GET["id"]) ? $_GET["id"] : null;
+                                       $class_id = $_GET['id'];
+                                       require('connect.php');
 
-                                    // Kiểm tra xem 'id' đã được truyền vào hay chưa
-                                    if(isset($_GET["id"])) {
-                                       $post_id = $_GET["id"];
+                                       $getname = "SELECT class_name FROM classes WHERE id='$class_id'";
+                                       $truyvan = mysqli_query($connection, $getname);
+                                       $class_name = mysqli_fetch_array($truyvan)['class_name'];
 
-                                       // Sử dụng prepared statements để ngăn chặn SQL injection
-                                       $get_fullname = "SELECT `fullname` FROM `users` WHERE `user_id` = ?";
-                                       $stmt = mysqli_prepare($connection, $get_fullname);
-                                       mysqli_stmt_bind_param($stmt, "i", $user_id); // giả sử user_id là kiểu integer
-                                       mysqli_stmt_execute($stmt);
-                                       $get_fullname_result = mysqli_stmt_get_result($stmt);
+                                       echo $class_name;
+                                       echo "<br>";
+                                       // Đoạn mã này không cần thiết, vì bạn đã echo $class_name ở trên
+                                       // echo $row['class_name'];
 
-                                       // Kiểm tra xem có kết quả trả về không
-                                       if(mysqli_num_rows($get_fullname_result) > 0) {
-                                             $get_fullname_fetch = mysqli_fetch_array($get_fullname_result);
-                                             $fullname = $get_fullname_fetch[0];
-                                             echo "<p class=\"d-inline\">$fullname</p>";
-                                       } else {
-                                             echo "Không tìm thấy người dùng với user_id này.";
+                                       $sql = "SELECT fullname, post_content
+                                                FROM posts 
+                                                INNER JOIN classes ON posts.class_id = classes.id
+                                                INNER JOIN users ON posts.user_id = users.user_id
+                                                WHERE class_name LIKE '%$class_name%'
+                                                ORDER BY posts.id_cmt DESC LIMIT 0,5";
+
+                                       $result = mysqli_query($connection, $sql);
+                                                                        
+                                       while($row = mysqli_fetch_array($result)){
+                                          echo $row['fullname']. ":";
+                                          echo "<br>";
+                                          echo $row['post_content'];
+                                          echo "<br>";
+                                          echo "<br>";
                                        }
-                                    } else {
-                                       echo "Tham số 'id' không được truyền vào.";
-                                    }
-                                 ?>
-                                       <?php echo $row["post_content"] ?>
+                                       ?>
+                                       <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id?>" method="post" enctype="multipart/form-data">
+                                       <input type="text" name="noidung">
+                                       <button type="submit"> Binh luan</button>
+                                       </form>
+                                       <!-- <?php echo $row["post_content"] ?> -->
                                     </p>
-                                    <a class="btn btn-warning" role="button" href="delete_posts.php?id=<?php echo $row["id"];?> && class_id=<?php echo $_GET['id']?>&&username=<?php echo $_GET['username'];?>" class="delete">Xóa bài</a>
+                                    <a 
+                                       class="btn btn-warning delete" 
+                                       role="button" 
+                                       href="delete_posts.php?id=<?php echo $row["id"];?> &&  class_id=<?php echo $_GET['id'];?> ">
+                                       Xóa bài
+                                    </a>
+
                                  </p>
+                                    <!-- test binh luan -->
+                                
+                                    <!-- <?php
+
+                                       $user_id = isset($_GET["userid"]) ? $_GET["userid"] : null;
+                                       $class_id = isset($_GET["id"]) ? $_GET["id"] : null;
+                                       $class_id = $_GET['id'];
+                                       require('connect.php');
+                                       
+                                       $getname = "SELECT class_name FROM classes WHERE id='$class_id'";
+                                       $truyvan = mysqli_query($connection, $getname);
+                                       $class_name = mysqli_fetch_array($truyvan)['class_name'];
+
+                                       echo $class_name;
+                                       echo "<br>";
+                                       // Đoạn mã này không cần thiết, vì bạn đã echo $class_name ở trên
+                                       // echo $row['class_name'];
+
+                                       $sql = "SELECT fullname, post_content
+                                                FROM posts 
+                                                INNER JOIN classes ON posts.class_id = classes.id
+                                                INNER JOIN users ON posts.user_id = users.user_id
+                                                WHERE class_name LIKE '%$class_name%'
+                                                ORDER BY posts.id_cmt DESC LIMIT 0,5";
+
+                                       $result = mysqli_query($connection, $sql);
+                                                                        
+                                       while($row = mysqli_fetch_array($result)){
+                                          echo $row['fullname']. ":";
+                                          echo "<br>";
+                                          echo $row['post_content'];
+                                          echo "<br>";
+                                          echo "<br>";
+                                       }
+                                    ?>
+                                    <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id?>" method="post" enctype="multipart/form-data">
+                                       <input type="text" name="noidung">
+                                       <button type="submit"> Binh luan</button>
+                                    </form> -->
+                                    <!-- test binh luan -->
+
+
+
+
+
+
+
+
+
+
+
+
                                 <hr>
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>

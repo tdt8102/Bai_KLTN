@@ -144,7 +144,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <a href="../TrangAdmin.php">Quản lý Users</a>
                 <a href="QuanLyClass.php">Quản lý Classes</a>
-                <!-- <a href="../QuanLyPost.php">Quản lý Posts</a> -->
+                <a href="../QuanLyPost.php">Quản lý Posts</a>
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
