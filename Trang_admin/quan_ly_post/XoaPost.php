@@ -2,16 +2,15 @@
     require('connect.php');
 
     // Assign variables using GET method
-    $id = $_GET['id_delete'];
-    $class_name = $_GET['class_name'];
+    $id_cmt = $_GET['id_delete'];
 
-    // Xóa dữ liệu từ bảng class_list và classes
-    $sql = "DELETE FROM class_list WHERE class_id = $id; DELETE FROM classes WHERE id = $id;";
+    // Xóa dữ liệu từ bảng posts
+    $sql = "DELETE FROM posts WHERE id_cmt = $id_cmt;";
     
     if($connection->multi_query($sql) === true){
         echo 
         "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-            <strong>$class_name đã được xóa.</strong>
+            <strong>Bình luận đã được xóa.</strong>
             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
                 <span aria-hidden=\"true\">&times;</span>
             </button>
@@ -22,6 +21,6 @@
     }
 
     $connection->close();
-    require_once('QuanLyClass.php');
+    require_once('QuanLyPost.php');
 ?>
 

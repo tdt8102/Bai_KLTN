@@ -166,8 +166,8 @@
                     <div class="dropdown-menu dropdown-menu-right" >
                         <a id="modalActivate"  data-toggle="modal" data-target="#ModalJoinClass" href="" class="dropdown-item" href="#">Thêm user</a>
                         
-                        <a onclick= "document.getElementById('id01').style.display='block'"
-                        style="width:100%;" class="dropdown-item" href="PhanQuyenuser.php">Phân quyền user</a>
+                        <!-- <a onclick= "document.getElementById('id01').style.display='block'"
+                        style="width:100%;" class="dropdown-item" href="PhanQuyenuser.php">Phân quyền user</a> -->
                     </div>
                 </li>
             </ul>
@@ -182,8 +182,8 @@
                     </svg>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" >
-                <a class="dropdown-item" href="#">Tài khoản của tôi</a>
-                <a class="dropdown-item" href="#"></a>
+                <!-- <a class="dropdown-item" href="#">Tài khoản của tôi</a>
+                <a class="dropdown-item" href="#"></a> -->
                 <a class="dropdown-item" href="logout.php">Đăng xuất</a>
                 </div>
                 </li>

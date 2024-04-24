@@ -143,8 +143,8 @@
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <a href="../TrangAdmin.php">Quản lý Users</a>
-                <a href="QuanLyClass.php">Quản lý Classes</a>
-                <a href="../QuanLyPost.php">Quản lý Posts</a>
+                <a href="../quan_ly_class/QuanLyClass.php">Quản lý Classes</a>
+                <a href="../quan_ly_post/QuanLyPost.php">Quản lý Posts</a>
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -159,10 +159,10 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                <a class="nav-link Join"href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" title="Tạo hoặc tham gia vào lớp học"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <!-- <a class="nav-link Join"href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" title="Tạo hoặc tham gia vào lớp học"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg></a>
-                    <div class="dropdown-menu dropdown-menu-right" >
+                    <div class="dropdown-menu dropdown-menu-right" > -->
                         <!-- <a id="modalActivate"  data-toggle="modal" data-target="#ModalJoinClass" href="" class="dropdown-item" href="#">Thêm lớp học</a>
                         
                         <a onclick= "document.getElementById('id01').style.display='block'"
@@ -192,7 +192,7 @@
     <?php require_once("../connect.php");?>
 
     <?php
-        $sql = 'SELECT * FROM `classes`';
+        $sql = 'SELECT * FROM `posts`';
         $result = $connection->query($sql) or die(mysqli_error($connection));
     ?>
 
@@ -200,10 +200,10 @@
     <section>
         <table>
             <tr>
+                <th>ID cmt</th>
+                <th>Post content</th>
                 <th>Class ID</th>
-                <th>Class name</th>
-                <th>Class title</th>
-                <th>Lecturer name</th>
+                <th>User ID</th>
                 <th>Admin Action</th>
             </tr>
 
@@ -211,13 +211,13 @@
                 while($row = $result->fetch_assoc()){
             ?>        
             <tr>
-                <td><?php echo $row['id'];?></td>
-                <td><?php echo $row['class_name'];?></td>
-                <td><?php echo $row['class_title'];?></td>
-                <td><?php echo $row['lecturer'];?></td>
+                <td><?php echo $row['id_cmt'];?></td>
+                <td><?php echo $row['post_content'];?></td>
+                <td><?php echo $row['class_id'];?></td>
+                <td><?php echo $row['user_id'];?></td>
                 <td>
-                    <a href="EditClass.php?id=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?> && class_title=<?php echo $row['class_title'];?> && lecturer=<?php echo $row['lecturer'];?>">Update</a>
-                    <a href="XoaClass.php?id_delete=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?>">Delete</a>
+                    <a href="EditPost.php?id_cmt=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?> && class_id=<?php echo $row['class_id'];?> && user_id=<?php echo $row['user_id'];?>">Update</a>
+                    <a href="XoaPost.php?id_delete=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?>">Delete</a>
                 </td>
             </tr>
 

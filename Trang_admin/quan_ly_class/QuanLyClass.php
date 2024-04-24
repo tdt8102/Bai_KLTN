@@ -144,7 +144,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <a href="../TrangAdmin.php">Quản lý Users</a>
                 <a href="QuanLyClass.php">Quản lý Classes</a>
-                <a href="../QuanLyPost.php">Quản lý Posts</a>
+                <a href="../quan_ly_post/QuanLyPost.php">Quản lý Posts</a>
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -163,9 +163,9 @@
                     <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg></a>
                     <div class="dropdown-menu dropdown-menu-right" >
-                        <!-- <a id="modalActivate"  data-toggle="modal" data-target="#ModalJoinClass" href="" class="dropdown-item" href="#">Thêm lớp học</a>
+                        <a id="modalActivate"  data-toggle="modal" data-target="#ModalJoinClass" href="" class="dropdown-item" href="#">Thêm lớp học</a>
                         
-                        <a onclick= "document.getElementById('id01').style.display='block'"
+                        <!-- <a onclick= "document.getElementById('id01').style.display='block'"
                         style="width:100%;" class="dropdown-item" href="PhanQuyenuser.php">---</a> -->
                     </div>
                 </li>
@@ -181,8 +181,8 @@
                     </svg>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" >
-                <a class="dropdown-item" href="#">Tài khoản của tôi</a>
-                <a class="dropdown-item" href="#">Đăng nhập bằng tài khoản khác</a>
+                <!-- <a class="dropdown-item" href="#">Tài khoản của tôi</a> -->
+                <!-- <a class="dropdown-item" href="#">Đăng nhập bằng tài khoản khác</a> -->
                 <a class="dropdown-item" href="../logout.php">Đăng xuất</a>
                 </div>
                 </li>
