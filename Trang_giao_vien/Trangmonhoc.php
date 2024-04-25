@@ -17,25 +17,46 @@
     <script src="./js/post.js"></script> 
     <link rel="stylesheet" href="./css/Trangmonhoc.css">
     <link rel="stylesheet" href="./css/post.css">
+    <script src="./js/Collapse_sidebar.js"></script>
     <title>Hanoi University of Natural Resources and Environment</title>
 </head>
   <body>
      <!--Thanh navbar-->
      <nav class="navbar navbar-expand-sm navbar-dark bg-info">
-           <a class="navbar-brand" href="TrangNguoiDung.php?username=<?php echo $username?> && userid=<?php echo $userid?>"">
+            <div id="mySidebar" class="sidebar">
+            <?php
+               // Kiểm tra xem biến $_GET['userid'] có tồn tại không trước khi sử dụng
+               $userid = isset($_GET['userid']) ? $_GET['userid'] : ''; // Nếu không tồn tại, gán giá trị rỗng
+               // Get class id and userid
+               $id = $_GET['id'];
+               ?>
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+               <a class="nav-item" href="./Trangbaitap.php?id=<?php echo $id?>&&userid=<?php echo $userid?>"">Bài tập trên lớp</a>
+               <a href="./classlist.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách học sinh</a>
+               <a href="./QuanLyPost.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách bình luận</a>   
+            </div>
+            <div id="main">
+                <button class="openbtn" onclick="openNav()">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                </svg> </button>  
+            </div>
+      
+     <a class="navbar-brand" href="TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
               <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
               Hanoi University of Natural Resources and Environment
            </a>
-           <div class="topnav">
+           <!-- <div class="topnav">
                <?php
                // Kiểm tra xem biến $_GET['userid'] có tồn tại không trước khi sử dụng
                $userid = isset($_GET['userid']) ? $_GET['userid'] : ''; // Nếu không tồn tại, gán giá trị rỗng
                // Get class id and userid
                $id = $_GET['id'];
                ?>
-               <a class="nav-item" href="Trangbaitap.php">Bài tập trên lớp</a>
+               <a class="nav-item" href="Trangbaitap.php?id=<?php echo $id?>&&userid=<?php echo $userid?>"">Bài tập trên lớp</a>
                <a href="classlist.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách học sinh</a>
-            </div>
+               <a href="QuanLyPost.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách bình luận</a>
+            </div> -->
         
            <ul class="navbar-nav ml-auto">
               
@@ -49,7 +70,7 @@
                   </svg>
                  </a>
                <div class="dropdown-menu dropdown-menu-right" >
-                 <a class="dropdown-item textAccount textLogout " href="logout.php">Đăng xuất khỏi tài khoản</a>
+                  <a class="dropdown-item textAccount textLogout " href="logout.php">Đăng xuất khỏi tài khoản</a>
                </div>
               </li>
               
@@ -111,25 +132,13 @@
                      // $post_content = $row["post_content"];
                   }
                   ?>      
-                     <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                     <div class="form-group shadow-textarea">
-                        
-                        <label for="exampleFormControlTextarea1"></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="post_content" id="post_content" placeholder="Thông báo nội dung nào đó cho lớp học của bạn"><?php echo $post_content ?></textarea>
-                        <input class="form-control-sm" type="file" name="file_upload"/>
-                        <button type="submit" class="btn_Post">Đăng bài</button>
-
-
-                        <!-- <iframe src="binhluan.php?class_id=<?=$_GET['id']?>" width="100%" height="400px"  frameborder="0"></iframe> -->
-                     </div>
-
-                     </div> 
-
             </form>    
                      <?php
                         require "connect.php";
                         $sql = "SELECT * FROM `posts` WHERE `class_id` = $id";
                         $result = $connection->query($sql);
+                        echo "BẢN TIN";
+
                         /*while ($row = $result->fetch_assoc())
                         {*/
                            
@@ -139,7 +148,6 @@
                      ?>     
                         <div class="shadow-lg p-3 mb-5 bg-light rounded p1">
                               <div class="form-group shadow-textarea">
-                                
                                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
                                     <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -157,8 +165,9 @@
                                        $truyvan = mysqli_query($connection, $getname);
                                        $class_name = mysqli_fetch_array($truyvan)['class_name'];
 
-                                       echo $class_name;
+                                    
                                        echo "<br>";
+                                       
                                        // Đoạn mã này không cần thiết, vì bạn đã echo $class_name ở trên
                                        // echo $row['class_name'];
 
@@ -172,25 +181,24 @@
                                        $result = mysqli_query($connection, $sql);
                                                                         
                                        while($row = mysqli_fetch_array($result)){
-                                          echo $row['fullname']. ":";
-                                          echo "<br>";
+                                          echo $row['fullname']. ": ";
+                                         
                                           echo $row['post_content'];
-                                          echo "<br>";
                                           echo "<br>";
                                        }
                                        ?>
                                        <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id?>" method="post" enctype="multipart/form-data">
                                        <input type="text" name="noidung">
-                                       <button type="submit"> Binh luan</button>
+                                       <button type="submit">Gửi</button>
                                        </form>
                                        <!-- <?php echo $row["post_content"] ?> -->
                                     </p>
-                                    <a 
+                                    <!-- <a 
                                        class="btn btn-warning delete" 
                                        role="button" 
                                        href="delete_posts.php?id=<?php echo $row["id"];?> &&  class_id=<?php echo $_GET['id'];?> ">
                                        Xóa bài
-                                    </a>
+                                    </a> -->
 
                                  </p>
                                     <!-- test binh luan -->
@@ -246,16 +254,16 @@
 
 
                                 <hr>
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
                                     <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                     <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                                 </svg>
+                                 </svg> -->
 
-                                 <div class="textarea-container">
+                                 <!-- <div class="textarea-container">
                                     <textarea class="auto_height"  oninput="auto_height(this)" row ="2" placeholder="Thêm nhận xét của lớp học..."></textarea>
                                     <button type="submit" class="btn btn-primary">Gửi</button>
-                                 </div>
+                                 </div> -->
                                  
                               </div>
 

@@ -11,25 +11,42 @@
     <script src="./js/Collapse_sidebar.js"></script> 
     <link rel="stylesheet" href="./css/TrangThamGiaLopHoc.css">
     <link rel="stylesheet" href="./css/dropdownAccount.css">
-   
+    <script src="./js/Collapse_sidebar.js"></script>
     <title>Document</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-info">
-
-<a class="navbar-brand" href="#">
+<div id="mySidebar" class="sidebar">
+            <?php
+               // Kiểm tra xem biến $_GET['userid'] có tồn tại không trước khi sử dụng
+               $userid = isset($_GET['userid']) ? $_GET['userid'] : ''; // Nếu không tồn tại, gán giá trị rỗng
+               // Get class id and userid
+               $id = $_GET['id'];
+               ?>
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+               <a href="./Trangmonhoc.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Trang lớp học</a>
+               <a href="./classlist.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách học sinh</a>
+               <a href="./QuanLyPost.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách bình luận</a>   
+            </div>
+            <div id="main">
+                <button class="openbtn" onclick="openNav()">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                </svg> </button>  
+            </div>
+<a class="navbar-brand" href="TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
    <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
    Hanoi University of Natural Resources and Environment
 </a>
 
 <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
+    <!-- <li class="nav-item dropdown">
       <a class="nav-link Join"href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" title="Tạo hoặc tham gia vào lớp học"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
          <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
        </svg></a>
          
-    </li>
+    </li> -->
 </ul>
 <ul class="navbar-nav">
    <li class="nav-item dropdown ">

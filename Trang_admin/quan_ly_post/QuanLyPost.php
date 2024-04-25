@@ -192,7 +192,9 @@
     <?php require_once("../connect.php");?>
 
     <?php
-        $sql = 'SELECT * FROM `posts`';
+        // $sql = 'SELECT posts.*, users.fullname FROM `posts` p JOIN `users` u ON posts.user_id = users.user_id';
+        // $sql = 'SELECT * FROM `posts`';
+        $sql = 'SELECT p.*, u.fullname FROM `posts` p JOIN `users` u ON p.user_id = u.user_id';
         $result = $connection->query($sql) or die(mysqli_error($connection));
     ?>
 
@@ -204,6 +206,7 @@
                 <th>Post content</th>
                 <th>Class ID</th>
                 <th>User ID</th>
+                <th>Name</th>
                 <th>Admin Action</th>
             </tr>
 
@@ -215,6 +218,7 @@
                 <td><?php echo $row['post_content'];?></td>
                 <td><?php echo $row['class_id'];?></td>
                 <td><?php echo $row['user_id'];?></td>
+                <td><?php echo $row['fullname'];?></td>
                 <td>
                     <a href="EditPost.php?id_cmt=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?> && class_id=<?php echo $row['class_id'];?> && user_id=<?php echo $row['user_id'];?>">Update</a>
                     <a href="XoaPost.php?id_delete=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?>">Delete</a>

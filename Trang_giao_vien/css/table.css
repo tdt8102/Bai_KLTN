@@ -1,10 +1,11 @@
 /*Lines from T-Bone*/
 /*style for the table*/
 table {
-    margin: 50px;
-    border: 1px solid black;
-  }
-  
+  margin: 50px auto;
+  border: 1px solid black;
+  width: auto;
+}
+
 /*styling for each th and td for headers*/
 th {
 font-weight: bolder;

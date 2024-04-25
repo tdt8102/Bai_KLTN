@@ -222,18 +222,18 @@
                     <div class="card-body">
                         <h5 class="card-title p1" style="font-size:15px">Chủ đề: <?php echo $row1["class_title"]?></h5>
                         <p class="card-text text-dark " style="font-size:15px">
-                            <b> <?php echo $row1["lecturer"]; ?></b>
+                            <b>Giảng viên:<?php echo $row1["lecturer"]; ?></b>
                         </p>
                     </div>
                     
                     <div class= "card-footer border-secondary">
-                    <a class="btn btn-secondary"  role="button" href="EditLopHoc.php?id=<?php echo $row1['id']?> && class_name=<?php echo $row1['class_name']?> && class_title=<?php echo $row1['class_title']?> && lecturer=<?php echo $row1['lecturer']?>" >Sửa</a> |
+                    <!-- <a class="btn btn-secondary"  role="button" href="EditLopHoc.php?id=<?php echo $row1['id']?> && class_name=<?php echo $row1['class_name']?> && class_title=<?php echo $row1['class_title']?> && lecturer=<?php echo $row1['lecturer']?>" >Sửa</a> | -->
                     <!--Adding username and userid to pass it to delete_function-->
                     <?php
                         // Re-assign username and userid
                         $username = $_GET['username'];
                     ?>
-                    <a class="btn btn-danger" role="button" href="delete_function.php?id=<?php echo $row1["id"]?>&&username=<?php echo $username?>&&userid=<?php echo $user_id?>" class="delete">Xóa</a>                       
+                    <!-- <a class="btn btn-danger" role="button" href="delete_function.php?id=<?php echo $row1["id"]?>&&username=<?php echo $username?>&&userid=<?php echo $user_id?>" class="delete">Xóa</a>                        -->
                     
                     
                     </div>
