@@ -109,8 +109,8 @@
                                                     <td><?php echo $row['user_id'];?></td>
                                                     <td><?php echo $row['fullname'];?></td>
                                                     <td>
-                                                        <a href="EditPost.php?id_cmt=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?> && class_id=<?php echo $row['class_id'];?> && user_id=<?php echo $row['user_id'];?>">Update</a>
-                                                        <a href="XoaPost.php?id_delete=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?>">Delete</a>
+                                                        <a href="EditPost.php?id_cmt=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?> && class_id=<?php echo $row['class_id'];?> && user_id=<?php echo $row['user_id'];?>"class="btn btn-warning">Update</a>
+                                                        <a href="XoaPost.php?id_delete=<?php echo $row['id_cmt'];?> && post_content=<?php echo $row['post_content'];?>"class="btn btn-danger">Delete</a>
                                                     </td>
                                                 </tr>
                                                 <?php

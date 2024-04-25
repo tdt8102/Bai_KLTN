@@ -40,7 +40,7 @@
                 </div>
 
                 <div>
-                    <label for="post_content"><b>Post content</b></label>
+                    <label for="post_content"><b>Nội dung post</b></label>
                     <input type="text" name="post_content" value = "<?php echo $_GET['post_content']?>" required>
                 </div>                
                 

@@ -130,7 +130,7 @@
             <td><?php echo $row_user_info[2]; ?></td>
             <td><?php echo $row_user_info[3]; ?></td>
             <td>
-                <a href="XoaHocSinh.php?fullname=<?php echo $row_user_info[0]; ?>&student_id=<?php echo $row['user_id']; ?>&id=<?php echo $id; ?>&userid=<?php echo $userid; ?>">Delete</a>
+                <a href="XoaHocSinh.php?fullname=<?php echo $row_user_info[0]; ?>&student_id=<?php echo $row['user_id']; ?>&id=<?php echo $id; ?>&userid=<?php echo $userid; ?>" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         <?php

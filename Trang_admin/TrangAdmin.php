@@ -249,8 +249,8 @@
                 ?>  
                 </td>
                 <td>
-                    <a href="UpdateUser.php?id=<?php echo $row['user_id'];?> && username=<?php echo $row['username'];?> && password=<?php echo $row['password'];?> && fullname=<?php echo $row['fullname'];?> && birthdate=<?php echo $row['birthdate'];?> && email=<?php echo $row['email'];?> && phone=<?php echo $row['phone'];?> && role=<?php echo $row['role']?> && status=<?php echo $row['status']?>">Update</a>
-                    <a href="XoaUser.php?id_delete=<?php echo $row['user_id'];?> && username=<?php echo $row['username'];?>">Delete</a>
+                    <a href="UpdateUser.php?id=<?php echo $row['user_id'];?> && username=<?php echo $row['username'];?> && password=<?php echo $row['password'];?> && fullname=<?php echo $row['fullname'];?> && birthdate=<?php echo $row['birthdate'];?> && email=<?php echo $row['email'];?> && phone=<?php echo $row['phone'];?> && role=<?php echo $row['role']?> && status=<?php echo $row['status']?>"class="btn btn-warning">Update</a>
+                    <a href="XoaUser.php?id_delete=<?php echo $row['user_id'];?> && username=<?php echo $row['username'];?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
 

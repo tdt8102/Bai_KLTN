@@ -82,7 +82,7 @@
                         + Tạo bài tập
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="trangchitietbaitap.php">Bài tập</a>
+                        <a class="dropdown-item" href="baitaptracnghiem.php">Bài tập</a>
                         <a class="dropdown-item" href="#">Bài tập kiểm tra</a>
                         <a class="dropdown-item" href="#">Câu hỏi</a>
                         <a class="dropdown-item" href="#">Tài liệu</a>

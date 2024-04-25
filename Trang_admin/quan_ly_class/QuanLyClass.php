@@ -216,8 +216,8 @@
                 <td><?php echo $row['class_title'];?></td>
                 <td><?php echo $row['lecturer'];?></td>
                 <td>
-                    <a href="EditClass.php?id=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?> && class_title=<?php echo $row['class_title'];?> && lecturer=<?php echo $row['lecturer'];?>">Update</a>
-                    <a href="XoaClass.php?id_delete=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?>">Delete</a>
+                    <a href="EditClass.php?id=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?> && class_title=<?php echo $row['class_title'];?> && lecturer=<?php echo $row['lecturer'];?>" class="btn btn-warning">Update</a>
+                    <a href="XoaClass.php?id_delete=<?php echo $row['id'];?> && class_name=<?php echo $row['class_name'];?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
 
