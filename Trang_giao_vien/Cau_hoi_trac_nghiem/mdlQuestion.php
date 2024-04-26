@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Thêm câu hỏi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -59,17 +59,27 @@
 
 <script type="text/javascript">
         $('#btnSubmit').click(function(){
-            let question = $('#txaQuestion').val();// lấy giá trị của textarea có id là txaQuestion gán cho biến question
-            let option_a = $('#txaOptionA').val();//lấy giá trị của textarea có id là txaOptionA gán cho biến option_a
-            let option_b = $('#txaOptionB').val();//lấy giá trị của textarea có id là txaOptionB gán cho biến option_b
-            let option_c = $('#txaOptionC').val();//lấy giá trị của textarea có id là txaOptionC gán cho biến option_c
-            let option_d = $('#txaOptionD').val();//lấy giá trị của textarea có id là txaOptionD gán cho biến option_d
+            let question = $('#txaQuestion').val().trim();// lấy giá trị của textarea có id là txaQuestion gán cho biến question
+            let option_a = $('#txaOptionA').val().trim();//lấy giá trị của textarea có id là txaOptionA gán cho biến option_a
+            let option_b = $('#txaOptionB').val().trim();//lấy giá trị của textarea có id là txaOptionB gán cho biến option_b
+            let option_c = $('#txaOptionC').val().trim();//lấy giá trị của textarea có id là txaOptionC gán cho biến option_c
+            let option_d = $('#txaOptionD').val().trim();//lấy giá trị của textarea có id là txaOptionD gán cho biến option_d
             let answer = $('#rdOptionA').is(':checked')?'A' :
                          $('#rdOptionB').is(':checked')?'B' :
                          $('#rdOptionC').is(':checked')?'C' :
                          $('#rdOptionD').is(':checked')?'D' : '';
-            //xem đáp án nào được check thì gán giá trị tương ứng, sử dụng thuật toán 3 ngôi
+            //xem đáp án nào được check thì gán giá trị tương ứng, sử dụng thuật toán toán tử 3 ngôi
             // console.log(question,option_a,option_b,option_c,option_d,answer);
+            //rang buoc du lieu
+            if(question.length == 0 || option_a.length == 0 || option_b.length == 0 || option_c.length == 0 || option_d.length == 0){
+                alert('Vui lòng nhập đầy đủ câu hỏi và các đáp án');
+                return;
+            }
+
+            if(answer.length == 0){
+                alert('Vui lòng chọn đáp án đúng');
+                return;
+            }
 
             $.ajax({
                 url:'add_question.php',

@@ -51,14 +51,14 @@ include("connect.php")
         $index=1;
         $result = $sql->get_result(); // Get result set from prepared statement
         while ($row = $result->fetch_assoc()){ // Fetch associative array
-            echo '<tr>';
+            echo '<tr id='.$row['id_quest'].'>';
 
             echo '<th scope="row">'.($index++).'</th>';
             echo '<td>'.$row['question'].'</td>'; // Use $row instead of $result
             echo    '<td>';
-            echo    '<button type="" class="btn btn-info">Xem</button>&nbsp';
-            echo    '<button type="" class="btn btn-warning">Sửa</button>&nbsp';
-            echo    '<button type="" class="btn btn-danger">Xóa</button>&nbsp';
+            echo    '<input type="button" class="btn btn-info" value="Xem" name="view">&nbsp';
+            echo    '<input type="button" class="btn btn-warning" value="Sửa" name="update">&nbsp';
+            echo    '<input type="button" class="btn btn-danger" value="Xóa" name="delete">';
             echo '</td>';
             echo '</tr>';
         }
@@ -74,4 +74,29 @@ include("connect.php")
     $('#btnQuestion').click(function(){
         $('#modalQuestion').modal();
     });
+
+    // $('input[type=button]').click(function(){
+    //     var bid = this.id;
+    //     var trid = $(this).closest('tr').attr('id'); // Corrected typo: closest() instead of clossest()
+    //     console.log(trid);
+    // });
+
+
+$("input[name='view']").click(function(){
+    var bid = this.id;
+    var trid = $(this).closest('tr').attr('id');
+    // console.log(trid);
+    $.ajax({
+        url: 'detail.php',
+        type: 'get',
+        data: {
+            id: trid
+        },
+        success: function(data){
+            // Handle the success response here
+            console.log(data);
+            $('#modalQuestion').modal();
+        }
+    });
+});
 </script>    
