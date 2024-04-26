@@ -69,8 +69,9 @@ include("connect.php")
     </div>    
 </body>
 </html>
+<?php include('mdlQuestion.php') ?>
 <script type="text/javascript">
     $('#btnQuestion').click(function(){
-        alert(1);
+        $('#modalQuestion').modal();
     });
 </script>    
