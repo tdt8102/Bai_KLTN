@@ -16,13 +16,16 @@ if(isset($_GET['id'])) {
 
     // Fetch the result
     $result = $rs->get_result()->fetch_assoc();
-    
     // Check if a record was found
     if($result) {
         // Add question data to the response array
         $response['id'] = $id;
         $response['question'] = $result['question'];
         $response['option_a'] = $result['option_a'];
+        $response['option_b'] = $result['option_b'];
+        $response['option_c'] = $result['option_c'];
+        $response['option_d'] = $result['option_d'];
+        $response['answer'] = $result['answer'];
         // Add other fields as needed
         
         // Output JSON-encoded response
@@ -38,3 +41,16 @@ if(isset($_GET['id'])) {
     echo json_encode($response, JSON_UNESCAPED_UNICODE);
 }
 ?>
+
+<?php
+// include('connect.php');
+// $id = $_GET['id'];
+// $sql = "SELECT * FROM question WHERE id_quest = ?";
+// $rs = $connection->prepare($sql);
+// $rs->execute([$id]); // Passing the parameter array
+// $result = $rs->fetch();
+    
+// echo json_encode($result, JSON_UNESCAPED_UNICODE);
+?>
+
+

@@ -8,6 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <input type="hidden" id="txtQuestionId" value="">
         <div class="form-group">
             <textarea class="form-control" id="txaQuestion" rows="1" placeholder="Câu hỏi"></textarea>
         </div>
@@ -70,7 +71,7 @@
                          $('#rdOptionD').is(':checked')?'D' : '';
             //xem đáp án nào được check thì gán giá trị tương ứng, sử dụng thuật toán toán tử 3 ngôi
             // console.log(question,option_a,option_b,option_c,option_d,answer);
-            //rang buoc du lieu
+            // //rang buoc du lieu
             if(question.length == 0 || option_a.length == 0 || option_b.length == 0 || option_c.length == 0 || option_d.length == 0){
                 alert('Vui lòng nhập đầy đủ câu hỏi và các đáp án');
                 return;
@@ -81,7 +82,11 @@
                 return;
             }
 
-            $.ajax({
+            let questionId = $('#txtQuestionId').val();
+            console.log('id la: ',questionId);
+
+            if(questionId.length==0){//them moi cau hoi
+                $.ajax({
                 url:'add_question.php',
                 type:'post',
                 data:{
@@ -105,8 +110,32 @@
                     $('#rdOptionB').prop('checked',false);
                     $('#rdOptionC').prop('checked',false);
                     $('#rdOptionD').prop('checked',false);
-                }
-            });
+
+                    ReadData();
+                    }
+                });
+            }else{//cap nhat cau hoi da co
+                $.ajax({
+                url:'update_question.php',
+                type:'post',
+                data:{
+                    id:questionId,//trái là thuộc tính, phải là giá trị <-> tên biến ở phía trên
+                    question:question,
+                    option_a:option_a,
+                    option_b:option_b,
+                    option_c:option_c,
+                    option_d:option_d,
+                    answer:answer
+                },
+                success:function(data){
+                    alert(data);
+                    $('#modalQuestion').modal('hide');//an modal sau khi update xong
+                    ReadData();
+                    }
+                });
+            }
+
+            
 
         });
 </script>

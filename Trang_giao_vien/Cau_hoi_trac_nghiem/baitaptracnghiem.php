@@ -23,80 +23,178 @@ include("connect.php")
 <body>
     <div class="container">
 
-
-    
-
-
-
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Câu hỏi</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-
     <div class="row">
         <div class="col-md-12 text-right">
             <button id="btnQuestion" class="btn btn-success">+</button>
         </div>
     </div>
-    <?php
-        include("connect.php");
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Câu hỏi</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody id='questions'>
+        </tbody>
+    </table>
 
-        $sql = $connection->prepare("SELECT * FROM question");
-        $sql->execute();
-        $index=1;
-        $result = $sql->get_result(); // Get result set from prepared statement
-        while ($row = $result->fetch_assoc()){ // Fetch associative array
-            echo '<tr id='.$row['id_quest'].'>';
-
-            echo '<th scope="row">'.($index++).'</th>';
-            echo '<td>'.$row['question'].'</td>'; // Use $row instead of $result
-            echo    '<td>';
-            echo    '<input type="button" class="btn btn-info" value="Xem" name="view">&nbsp';
-            echo    '<input type="button" class="btn btn-warning" value="Sửa" name="update">&nbsp';
-            echo    '<input type="button" class="btn btn-danger" value="Xóa" name="delete">';
-            echo '</td>';
-            echo '</tr>';
-        }
-    ?>
-
-  </tbody>
-</table>
     </div>    
 </body>
 </html>
 <?php include('mdlQuestion.php') ?>
 <script type="text/javascript">
+
+    //trong su kien trang dc load xong thi goi toi ham load ds cau hoi
+    $(document).ready(function(){
+        ReadData();
+    })
+
     $('#btnQuestion').click(function(){
+        //Khi them moi mac dinh id cua cau hoi la 1 chuoi trong
+        $('#txtQuestionId').val('');
+
+        //set cac gia tri mac dinh cho cac input khi them moi 
+        $('#txaQuestion').val('');
+        $('#txaOptionA').val('');
+        $('#txaOptionB').val('');
+        $('#txaOptionC').val('');
+        $('#txaOptionD').val('');
+
+        //rs gia tri cho cac radio button-> k chon cai nao
+        $('#rdOptionA').prop('checked',false);
+        $('#rdOptionB').prop('checked',false);
+        $('#rdOptionC').prop('checked',false);
+        $('#rdOptionD').prop('checked',false);
+
         $('#modalQuestion').modal();
     });
 
-    // $('input[type=button]').click(function(){
-    //     var bid = this.id;
-    //     var trid = $(this).closest('tr').attr('id'); // Corrected typo: closest() instead of clossest()
-    //     console.log(trid);
-    // });
+
+    $(document).on('click',"input[name='update']",function(){
+        // var bid = this.id;
+        var trid = $(this).closest('tr').attr('id');// lay id cua dong dc chon tren table khi click vao button co ten la update
+        GetDetail(trid);//lay du lieu cau hoi dua vao id tim dc o tren va do du lieu vao cho cac input
+        /*
+            trong truong hop xem chi tiet cua cau hoi khong cho nguoi dung chinh sua cac gia tri va nhan nut xac nhan
+        */
+
+        $('#txaQuestion').attr('readonly',false);
+        $('#txaOptionA').attr('readonly',false);
+        $('#txaOptionB').attr('readonly',false);
+        $('#txaOptionC').attr('readonly',false);
+        $('#txaOptionD').attr('readonly',false);
+        $('#txaQuestion').attr('readonly',false);
+                    
+        $('#rdOptionA').attr('disabled',false);
+        $('#rdOptionB').attr('disabled',false);
+        $('#rdOptionC').attr('disabled',false);
+        $('#rdOptionD').attr('disabled',false);
+
+        $('#txtQuestionId').val(trid);
+        $('#btnSubmit').show();
+    });
+
+    $(document).on('click',"input[name='view']",function(){
+        var bid = this.id;
+        var trid = $(this).closest('tr').attr('id');
+        GetDetail(trid);
+        /*
+            trong truong hop xem chi tiet cua cau hoi khong cho nguoi dung
+            chinh sua cac gia tri va nhan nut xac nhan
+        */
 
 
-$("input[name='view']").click(function(){
-    var bid = this.id;
-    var trid = $(this).closest('tr').attr('id');
-    // console.log(trid);
-    $.ajax({
-        url: 'detail.php',
-        type: 'get',
-        data: {
-            id: trid
-        },
-        success: function(data){
-            // Handle the success response here
-            console.log(data);
-            $('#modalQuestion').modal();
+        $('#txaQuestion').attr('readonly','readonly');
+        $('#txaOptionA').attr('readonly','readonly');
+        $('#txaOptionB').attr('readonly','readonly');
+        $('#txaOptionC').attr('readonly','readonly');
+        $('#txaOptionD').attr('readonly','readonly');
+        $('#txaQuestion').attr('readonly','readonly');
+                    
+        $('#rdOptionA').attr('disabled','readonly');
+        $('#rdOptionB').attr('disabled','readonly');
+        $('#rdOptionC').attr('disabled','readonly');
+        $('#rdOptionD').attr('disabled','readonly');
+
+        $('#btnSubmit').hide();
+    });
+
+    $(document).on('click',"input[name='delete']",function(){
+        // var bid = this.id;
+
+        var trid = $(this).closest('tr').attr('id');// lay id cua dong dc chon tren table khi click vao button co ten la update
+        
+        if(confirm("Bạn chắc chắn muốn xóa câu hỏi này không?") == true){
+            $.ajax({
+                url:'delete_question.php',
+                type:'post',
+                data:{
+                    id:trid
+                },
+                success:function(data){
+                    alert(data);
+                    ReadData();
+                }
+            });
         }
     });
-});
+
+    function GetDetail(id){//ham lay cau hoi dua vao id cau hoi
+        
+        $.ajax({
+            url: 'detail.php',//chi duong dan toi file detail.php de lay thong tin cau hoi
+            type: 'get',//phuong thuc get
+            data: {
+                id: id//truyen tham so co gia tri bang gia tri cua id cau hoi
+            },
+            success:function(data){
+                // Handle the success response here
+                
+                var q = jQuery.parseJSON( data); //ep du lieu tra ve qua json
+                // console.log(q)
+                
+                $('#txaQuestion').val(q['question']);//set gia tri cho textarea co id la txaQuestion
+                
+                $('#txaOptionA').val(q['option_a']);//set gia tri cho textarea co id la txaOption_a(dap an A)
+                $('#txaOptionB').val(q['option_b']);//set gia tri cho textarea co id la txaOption_b(dap an B)
+                $('#txaOptionC').val(q['option_c']);//set gia tri cho textarea co id la txaOption_c(dap an C)
+                $('#txaOptionD').val(q['option_d']);//set gia tri cho textarea co id la txaOption_d(dap an D)
+                
+                    $('#modalQuestion').modal();//hien modal co id la modalQuestion
+                
+                // console.log(q['answer']);
+                switch (q['answer']) {// dung switch case dua vao gia tri cua answer de tick dung dap an cua cau hoi
+                        case 'A':
+                            $('#rdOptionA').prop('checked',true);
+                            break;
+                        case 'B':
+                            $('#rdOptionB').prop('checked',true);
+                            break;
+                        case 'C':
+                            $('#rdOptionC').prop('checked',true);
+                            break;
+                        case 'D':
+                            $('#rdOptionD').prop('checked',true);
+                            break;
+                    }      
+                }
+        });
+    }
+
+    function ReadData(){
+        $.ajax({
+            url:'view.php',
+            type:'get',
+            success:function(data){
+                $('#questions').empty();
+                $('#questions').append(data);
+                
+            }
+        })
+    }
+
+   
 </script>    
