@@ -1,7 +1,8 @@
 <?php
     include("connect.php");
-
-    $sql = $connection->prepare("SELECT * FROM question");
+    $search = $_GET['search'];
+    $sql = $connection->prepare("SELECT * FROM question WHERE question LIKE CONCAT('%', ?, '%')");
+    $sql->bind_param("s", $search);
     $sql->execute();
     $index = 1;
     $data = '';
@@ -17,7 +18,7 @@
         $data .= '<input type="button" class="btn btn-danger" value="Xóa" name="delete">';
         $data .= '</td>';
         $data .= '</tr>';
-    }
+}
 
-    echo $data; // In nội dung của biến $data để hiển thị bảng
+echo $data; // In nội dung của biến $data để hiển thị bảng
 ?>

@@ -111,7 +111,7 @@
                     $('#rdOptionC').prop('checked',false);
                     $('#rdOptionD').prop('checked',false);
 
-                    ReadData();
+                    $('#btnSearch').click();
                     }
                 });
             }else{//cap nhat cau hoi da co
@@ -130,7 +130,7 @@
                 success:function(data){
                     alert(data);
                     $('#modalQuestion').modal('hide');//an modal sau khi update xong
-                    ReadData();
+                    $('#btnSearch').click();
                     }
                 });
             }

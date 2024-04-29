@@ -24,7 +24,22 @@ include("connect.php")
     <div class="container">
 
     <div class="row">
-        <div class="col-md-12 text-right">
+        <!-- phan tim kiem -->
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Tìm kiếm" id="txtSearch"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" id="btnSearch">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- ket thuc phan tim kiem -->
+        <div class="col-sm-6">
+        
+        </div>
+        <div class="col-md-2 text-right">
             <button id="btnQuestion" class="btn btn-success">+</button>
         </div>
     </div>
@@ -49,7 +64,7 @@ include("connect.php")
 
     //trong su kien trang dc load xong thi goi toi ham load ds cau hoi
     $(document).ready(function(){
-        ReadData();
+        $('#btnSearch').click();
     })
 
     $('#btnQuestion').click(function(){
@@ -72,7 +87,12 @@ include("connect.php")
         $('#modalQuestion').modal();
     });
 
+    $('#btnSearch').click(function(){
+        let search = $('#txtSearch').val().trim();
+        ReadData(search);
+    });
 
+//su kien update cau hoi
     $(document).on('click',"input[name='update']",function(){
         // var bid = this.id;
         var trid = $(this).closest('tr').attr('id');// lay id cua dong dc chon tren table khi click vao button co ten la update
@@ -96,7 +116,7 @@ include("connect.php")
         $('#txtQuestionId').val(trid);
         $('#btnSubmit').show();
     });
-
+//su kien xem chi tiet cau hoi
     $(document).on('click',"input[name='view']",function(){
         var bid = this.id;
         var trid = $(this).closest('tr').attr('id');
@@ -121,7 +141,7 @@ include("connect.php")
 
         $('#btnSubmit').hide();
     });
-
+//su kien xoa cau hoi
     $(document).on('click',"input[name='delete']",function(){
         // var bid = this.id;
 
@@ -141,7 +161,7 @@ include("connect.php")
             });
         }
     });
-
+//ham load thong tin cau hoi dua vao id
     function GetDetail(id){//ham lay cau hoi dua vao id cau hoi
         
         $.ajax({
@@ -183,11 +203,14 @@ include("connect.php")
                 }
         });
     }
-
-    function ReadData(){
+//ham load ds cau hoi
+    function ReadData(search){
         $.ajax({
             url:'view.php',
             type:'get',
+            data:{
+                search:search
+            },
             success:function(data){
                 $('#questions').empty();
                 $('#questions').append(data);
