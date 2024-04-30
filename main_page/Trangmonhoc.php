@@ -27,7 +27,7 @@
                // Get class id and userid
                $id = $_GET['id'];
                ?>
-               <a class="nav-item" href="Trangbaitap.php?id=<?php echo $id?>&&userid=<?php echo $userid?>"">Bài tập trên lớp</a>
+               <a class="nav-item" href="./Trang_bai_tap/Trangbaitap.php?id=<?php echo $id?>&&userid=<?php echo $userid?>"">Bài tập trên lớp</a>
                <a href="classlist.php?id=<?php echo $id?>&&userid=<?php echo $userid?>">Hiện danh sách học sinh</a>
             </div>
         

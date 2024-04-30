@@ -17,10 +17,10 @@
 <body>
     <!--Thanh navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <span class="navbar-brand" href="class.php?userid=<?php echo $_GET['userid']?>">
-                <img src="./image/HUNRE_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                Hanoi University of Natural Resources and Environment
-            </span>
+            <a class="navbar-brand" href="TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
+              <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+              Hanoi University of Natural Resources and Environment
+            </a>
                 <div class="topnav">
                     <?php
                         // Get class id and userid
@@ -28,7 +28,7 @@
                         $userid = $_GET['userid'];
                     ?>
                     <a href="Trangmonhoc.php?id=<?php echo $id?>&&userid=<?php echo $userid;?>">Trang lớp học</a>
-                    <a class="nav-item" href="assignment.php?id=<?php echo $_GET['id'];?>&&userid=<?php echo $_GET['userid'];?>">Bài tập trên lớp</a>
+                    <a class="nav-item" href="./Trang_bai_tap/Trangbaitap.php?id=<?php echo $id?>&&userid=<?php echo $userid?>"">Bài tập trên lớp</a>
                 </div>
                 <ul></ul>
     </nav>
