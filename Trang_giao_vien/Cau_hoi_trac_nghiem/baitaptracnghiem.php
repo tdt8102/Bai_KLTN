@@ -36,9 +36,17 @@ include("connect.php")
             </div>
         </div>
         <!-- ket thuc phan tim kiem -->
+
+        <!-- phan` ohan trang -->
         <div class="col-sm-6">
-        
+            <nav aria-label="Page navigation example" >
+                <ul class="pagination" style="margin: 0px; padding-top: 0px; margin-left:10px;" id="pagination">
+                    
+                </ul>
+            </nav>
         </div>
+        <!-- ket thuc phan`phan trang -->
+
         <div class="col-md-2 text-right">
             <button id="btnQuestion" class="btn btn-success">+</button>
         </div>
@@ -62,6 +70,7 @@ include("connect.php")
 <?php include('mdlQuestion.php') ?>
 <script type="text/javascript">
 
+    var page = 1;
     //trong su kien trang dc load xong thi goi toi ham load ds cau hoi
     $(document).ready(function(){
         $('#btnSearch').click();
@@ -90,6 +99,7 @@ include("connect.php")
     $('#btnSearch').click(function(){
         let search = $('#txtSearch').val().trim();
         ReadData(search);
+        Pagination(search);
     });
 
 //su kien update cau hoi
@@ -209,15 +219,55 @@ include("connect.php")
             url:'view.php',
             type:'get',
             data:{
-                search:search
+                search:search,
+                page:page
             },
             success:function(data){
                 $('#questions').empty();
                 $('#questions').append(data);
                 
             }
-        })
+        });
     }
+//ham phan trang
+    function Pagination(search){
+        $.ajax({
+            url:'pagination.php',
+            type:'get',
+            data:{
+                search:search
+            },
+            success:function(data){
+                console.log(data);
+                if(data<=1){
+                    $('#pagination').hide();
+                }else{
+                    $('#pagination').show();
+                    $('#pagination').empty();
+                    let pagi = '';
+                    for(i = 1; i <=data; i++){
+                        pagi += '<li class="page-item" data-li='+i+'><a class="page-link" href="#">'+i+'</a></li>';
+                    }
+                    $('#pagination').append(pagi);
+                }
+            }
+        });
+   }
+//search
+   $('#txtSearch').on('keypress', function(e){
+    if(e.which === 13){
 
-   
+        $('#btnSearch').click();
+    }
+   })
+
+
+
+    $("#pagination").on("click", "li a", function(event) {
+        event.preventDefault();
+        page = $(this).text();
+        ReadData($('#txtSearch').val());
+    });
+  
+
 </script>    

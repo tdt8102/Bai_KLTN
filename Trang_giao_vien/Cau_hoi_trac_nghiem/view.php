@@ -1,7 +1,12 @@
 <?php
     include("connect.php");
     $search = $_GET['search'];
-    $sql = $connection->prepare("SELECT * FROM question WHERE question LIKE CONCAT('%', ?, '%')");
+    $page = $_GET['page'];
+    $sql = $connection->prepare("SELECT * FROM question 
+                            WHERE question 
+                            LIKE CONCAT('%', ?, '%')
+                            LIMIT 5 OFFSET " . (($page - 1) * 5));
+
     $sql->bind_param("s", $search);
     $sql->execute();
     $index = 1;
