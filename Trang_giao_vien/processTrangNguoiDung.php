@@ -1,4 +1,5 @@
 <?php
+// Connect to database
 require "connect.php";
 
 // Assign userid
@@ -24,12 +25,12 @@ $check_column_result = mysqli_query($connection, $check_column_query);
 if (mysqli_num_rows($check_column_result) == 0) {
     // If lecturer column does not exist, add it to the table
     $alter_query = "ALTER TABLE `classes` ADD COLUMN `lecturer` VARCHAR(255)";
-    if(mysqli_query($connection, $alter_query)) {
+    if (mysqli_query($connection, $alter_query)) {
         // Proceed with inserting data into the classes table
         $sql = "INSERT INTO `classes` (`id`, `class_name`, `class_title`, `lecturer`) 
         VALUES (NULL, '$class_name','$class_title', '$class_lecturer');";
-                
-        if($connection->query($sql) === true){
+
+        if ($connection->query($sql) === true) {
             /**
              * First, get that created class_id then assign it to class_id in class_list to record which class belongs to which user
              */
@@ -41,10 +42,16 @@ if (mysqli_num_rows($check_column_result) == 0) {
 
             // Connect class and user in class_list table 
             $sql1 = "INSERT into `class_list`(`class_id`,`user_id`) VALUES($created_classid, $user_id)";
-            if($connection->query($sql1) === true){
-                require("TrangNguoiDung.php");
+            if ($connection->query($sql1) === true) {
+                // After successful insertion into class_list, proceed to insert into posts table
+                $insert_post_query = "INSERT INTO `posts` (`id_cmt`, `post_content`, `class_id`, `user_id`) VALUES (NULL, '', $created_classid, $user_id)";
+                if ($connection->query($insert_post_query) === true) {
+                    require ("TrangNguoiDung.php");
+                } else {
+                    echo "Error inserting into posts table: " . $connection->error;
+                }
             }
-            
+
         } else {
             echo "Error: " . $sql . "<br>" . $connection->error;
             $connection->close();
@@ -56,8 +63,8 @@ if (mysqli_num_rows($check_column_result) == 0) {
     // If lecturer column already exists, proceed with inserting data into the classes table
     $sql = "INSERT INTO `classes` (`id`, `class_name`, `class_title`, `lecturer`) 
     VALUES (NULL, '$class_name','$class_title', '$class_lecturer');";
-            
-    if($connection->query($sql) === true){
+
+    if ($connection->query($sql) === true) {
         /**
          * First, get that created class_id then assign it to class_id in class_list to record which class belongs to which user
          */
@@ -69,13 +76,19 @@ if (mysqli_num_rows($check_column_result) == 0) {
 
         // Connect class and user in class_list table 
         $sql1 = "INSERT into `class_list`(`class_id`,`user_id`) VALUES($created_classid, $user_id)";
-        if($connection->query($sql1) === true){
-            require("TrangNguoiDung.php");
+        if ($connection->query($sql1) === true) {
+            // After successful insertion into class_list, proceed to insert into posts table
+            $insert_post_query = "INSERT INTO `posts` (`id_cmt`, `post_content`, `class_id`, `user_id`) VALUES (NULL, '', $created_classid, '')";
+            if ($connection->query($insert_post_query) === true) {
+                require ("TrangNguoiDung.php");
+            } else {
+                echo "Error inserting into posts table: " . $connection->error;
+            }
         }
-        
-        } else {
-            echo "Error: " . $sql . "<br>" . $connection->error;
-            $connection->close();
-        }
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $connection->error;
+        $connection->close();
     }
+}
 ?>

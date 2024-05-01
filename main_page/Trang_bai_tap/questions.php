@@ -3,7 +3,7 @@
 
     $sql = "SELECT * FROM question 
             ORDER BY RAND()
-            LIMIT 5";
+            LIMIT 10";
 
     $result = $connection->query($sql); // Execute the query
     // $index = 1;

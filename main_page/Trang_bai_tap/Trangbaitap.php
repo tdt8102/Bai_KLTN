@@ -125,29 +125,14 @@
 
       //buoc 2: lay dap an cua nguoi dung - radio duoc check
       let choice = $(v).find('fieldset input[type="radio"]:checked').attr('class');
-      // let choice = '';
-      // switch (da){
-      //   case 'rdOptionA':
-      //     choice = 'A'
-      //   break;
-      //   case 'rdOptionB':
-      //     choice = 'B'
-      //   break;
-      //   case 'rdOptionC':
-      //     choice = 'C'
-      //   break;
-      //   case 'rdOptionD':
-      //     choice = 'D '
-      //   break;  
-      // }
       if(choice == answer){
         // console.log('Câu có id: '+id+' Đúng');
-        mark +=2;//moi cau dung dc cong 2 diem
+        mark +=1;//moi cau dung dc cong 2 diem
       }else{
         console.log('Câu có id: '+id+' Sai');
       }
     });
-    console.log('Điểm của bạn là ' +mark);
+    // console.log('Điểm của bạn là ' +mark);
     $('#mark').text('Điểm của bạn là ' +mark);
   }
 

@@ -82,24 +82,14 @@
                         + Tạo bài tập
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="./Cau_hoi_trac_nghiem/baitaptracnghiem.php">Bài tập</a>
+                        <a class="dropdown-item" href="./Cau_hoi_trac_nghiem/baitaptracnghiem.php?id=<?php echo $id?>&&userid=<?php echo $userid?>"">Bài tập trắc nghiệm</a>
                         <a class="dropdown-item" href="#">Bài tập kiểm tra</a>
                         <a class="dropdown-item" href="#">Câu hỏi</a>
-                        <a class="dropdown-item" href="#">Tài liệu</a>
-                        <a class="dropdown-item" href="#">Sử dụng lại bài đăng</a>
-                        <hr>
-                        <a class="dropdown-item" href="#">Chủ đề</a>
-
                     </div>
             </div>
             <b><p class="text-info">Chỉ định bài tập cho lớp học tại đây</p></b>
-            <p class="text-dark">Tạo bài tập và câu hỏi</p> 
             <p> Sử dụng chủ đề để sắp xếp bài tập trên lớp vào các mô-đun hoặc đơn vị</p>
             <p> Sắp xếp bài tập theo cách bạn muốn học sinh nhìn thấy</p>
-            
-            
-            
-
         </div>
        
 
