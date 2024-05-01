@@ -63,6 +63,7 @@
   </nav>
   <div class="container">
     <div class="panel-group">
+
       <div class="panel panel-primary">
         <div class="panel-heading">Làm bài tập trắc nghiệm</div>
         <div class="panel-body">
@@ -70,9 +71,12 @@
             <div class="col-sm-12 text-right">
               <button type="button" name="button" class="btn btn-success" id="btnStart">Bắt đầu</button>
             </div>
-            <div id="questions">
-              
-            </div>
+          </div>
+          <div id="questions"></div>
+          <div class="row">
+              <div class="col-sm-12 text-center">
+                <button type="button" class="btn btn-warning" id="btnFinish">Kết thúc bài kiểm tra</button>
+              </div>
           </div>
         </div>
       </div>
@@ -82,9 +86,27 @@
 </html>
 
 <script type="text/javascript">
+  $(document).ready(function(){
+    $('#btnFinish').hide();
+  });
+
   $('#btnStart').click(function(){
     GetQuestions();
+    $('#btnFinish').show();
+    $(this).hide();
   });
+
+  $('#btnFinish').click(function(){
+    $(this).hide();
+    $('#btnStart').show();
+    CheckResult();
+    // $('#questions').html('');
+  });
+
+  function CheckResult(){
+    alert(1);
+  }
+
   function GetQuestions(){
     $.ajax({
       url:'questions.php',
