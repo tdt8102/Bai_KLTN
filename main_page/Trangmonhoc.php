@@ -179,22 +179,21 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                                 INNER JOIN classes ON posts.class_id = classes.id
                                                 INNER JOIN users ON posts.user_id = users.user_id
                                                 WHERE class_name LIKE '%$class_name%'
-                                                ORDER BY posts.id_cmt DESC LIMIT 0,5";
+                                                ORDER BY posts.id_cmt DESC LIMIT 0,20";
 
                      $result = mysqli_query($connection, $sql);
 
                      while ($row = mysqli_fetch_array($result)) {
-                        echo $row['fullname'] . ":";
-                        echo "<br>";
+                        echo $row['fullname'] . ": ";
+
                         echo $row['post_content'];
-                        echo "<br>";
                         echo "<br>";
                      }
                      ?>
                   <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id ?>" method="post"
                      enctype="multipart/form-data">
                      <input type="text" name="noidung">
-                     <button type="submit">Gửi</button>
+                     <button type="submit" class="btn btn-info">Gửi</button>
                   </form>
                   <!-- <?php echo $row["post_content"] ?> -->
                   </p>

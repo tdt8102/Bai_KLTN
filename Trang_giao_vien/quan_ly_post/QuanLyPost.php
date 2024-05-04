@@ -3,12 +3,8 @@ session_start();
 
 if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
 
-    ?>
-    <?php
-    // Bắt đầu hoặc khôi phục phiên (session)
-    session_start();
+    require_once ("./connect.php"); // Di chuyển câu lệnh này lên phía trên để đảm bảo kết nối CSDL được mở trước khi thực hiện truy vấn.
 
-    // Các mã PHP khác ở đây
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -21,13 +17,13 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./css/style_request2.css">
-        <script src="./js/post.js"></script>
-        <link rel="stylesheet" href="./css/Trangmonhoc.css">
-        <link rel="stylesheet" href="./css/post.css">
-        <link rel="stylesheet" href="./css/style_request2.css" />
-        <link rel="stylesheet" href="./css/table.css" />
-        <link rel="stylesheet" href="./css/TrangThamGiaLopHoc.css" />
-        <script src="./js/Collapse_sidebar.js"></script>
+        <script src="../js/post.js"></script>
+        <link rel="stylesheet" href="../css/Trangmonhoc.css">
+        <link rel="stylesheet" href="../css/post.css">
+        <link rel="stylesheet" href="../css/style_request2.css" />
+        <link rel="stylesheet" href="../css/table.css" />
+        <link rel="stylesheet" href="../css/TrangThamGiaLopHoc.css" />
+        <script src="../js/Collapse_sidebar.js"></script>
         <title>Hanoi University of Natural Resources and Environment</title>
     </head>
 
@@ -42,9 +38,10 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 $id = $_GET['id'];
                 ?>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                <a href="./Trangmonhoc.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Trang lớp học</a>
-                <a class="nav-item" href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
-               <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
+                <a href="../Trangmonhoc.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Trang lớp học</a>
+                <a class="nav-item" href="../Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Bài tập
+                    trên lớp</a> <!-- Lỗi dấu ngoặc kép ở đây -->
+                <a href="../classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -56,7 +53,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
             </div>
             <a class="navbar-brand"
                 href="TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
-                <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                <img src="../image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 Hanoi University of Natural Resources and Environment
             </a>
             <div class="topnav">
@@ -66,9 +63,6 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 // Get class id and userid
                 $id = $_GET['id'];
                 ?>
-                <!-- <a class="nav-item" href="Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
-               <a href="classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
-               <a href="Trangmonhoc.php?id=<?php echo $id ?>&&userid=<?php echo $userid; ?>">Trang lớp học</a> -->
             </div>
 
             <ul class="navbar-nav ml-auto">
@@ -92,8 +86,6 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
             </ul>
         </nav>
 
-
-        <?php require_once ("./connect.php"); ?>
         <?php
         $class_id = $_GET['id'];
         $sql = "SELECT p.*, u.fullname FROM `posts` p JOIN `users` u ON p.user_id = u.user_id WHERE class_id = '$class_id'";
@@ -108,7 +100,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                     <th>Post content</th>
                     <th>Class ID</th>
                     <th>User ID</th>
-                    <th>Name user</th>
+                    <th>Name</th>
                     <th>Admin Action</th>
                 </tr>
 
@@ -122,12 +114,13 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                         <td><?php echo $row['user_id']; ?></td>
                         <td><?php echo $row['fullname']; ?></td>
                         <td>
-                            <a href="EditPost.php?id_cmt=<?php echo $row['id_cmt']; ?> && post_content=<?php echo $row['post_content']; ?> && class_id=<?php echo $row['class_id']; ?> && user_id=<?php echo $row['user_id']; ?>"
+                            <a href="EditPost.php?id_cmt=<?php echo $row['id_cmt']; ?>&post_content=<?php echo $row['post_content']; ?>& id=<?php echo $row['class_id']; ?>&user_id=<?php echo $row['user_id']; ?>"
                                 class="btn btn-warning">Update</a>
-                            <a href="XoaPost.php?id_delete=<?php echo $row['id_cmt']; ?> && post_content=<?php echo $row['post_content']; ?>"
+                            <a href="XoaPost.php?id_delete=<?php echo $row['id_cmt']; ?>&post_content=<?php echo $row['post_content']; ?>&id=<?php echo $row['class_id']; ?>"
                                 class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
+
                     <?php
                 }
                 ?>

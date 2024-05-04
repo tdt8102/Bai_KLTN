@@ -35,7 +35,8 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a href="./Trangmonhoc.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Trang lớp học</a>
         <a href="./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
-        <a href="./QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình luận</a>
+        <a href="./quan_ly_post/QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình
+          luận</a>
       </div>
       <div id="main">
         <button class="openbtn" onclick="openNav()">

@@ -4,12 +4,6 @@ session_start();
 if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
 
    ?>
-   <?php
-   // Bắt đầu hoặc khôi phục phiên (session)
-   session_start();
-
-   // Các mã PHP khác ở đây
-   ?>
    <!DOCTYPE html>
    <html lang="en">
 
@@ -42,7 +36,8 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
             <a class="nav-item" href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học
                sinh</a>
-            <a href="./QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình luận</a>
+            <a href="./quan_ly_post/QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình
+               luận</a>
          </div>
          <div id="main">
             <button class="openbtn" onclick="openNav()">
@@ -131,12 +126,25 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
          ?>
          <form class="" action="processTrangMonHoc.php?class_id=<?php echo $id ?>&username=<?php echo $username ?>"
             method="POST" enctype="multipart/form-data">
+
+            <!-- doan nay code lay file tai len trang web -->
+            <!-- <input type="file" name="hinhanh"> -->
+            <!-- doan nay code lay file tai len trang web -->
+
             <?php
             $id = "";
             $post_content = "";
 
             if (isset($_GET["id"])) {
                $id = $_GET["id"];
+
+
+               // doan nay code lay file tai len trang web 
+               // $fullname = $_GET["fullname"];
+               // $hinhanhpath = $_FILES['hinhanh']['fullname'];
+               // doan nay code lay file tai len trang web 
+         
+
                require "connect.php";
                $sql = "SELECT * FROM `posts` WHERE id_cmt = '$id';";
                $result = $connection->query($sql) or die($connection->error);
@@ -188,7 +196,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                                 INNER JOIN classes ON posts.class_id = classes.id
                                                 INNER JOIN users ON posts.user_id = users.user_id
                                                 WHERE class_name LIKE '%$class_name%'
-                                                ORDER BY posts.id_cmt DESC LIMIT 0,5";
+                                                ORDER BY posts.id_cmt DESC";
 
                      $result = mysqli_query($connection, $sql);
 
@@ -249,10 +257,10 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                      echo "<br>";
                   }
                   ?>
-                                    <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id ?>" method="post" enctype="multipart/form-data">
+                  <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id ?>" method="post" enctype="multipart/form-data">
                                        <input type="text" name="noidung">
                                        <button type="submit"> Binh luan</button>
-                                    </form> -->
+                  </form> -->
                   <!-- test binh luan -->
                   <hr>
                </div>
