@@ -83,7 +83,7 @@
           </svg>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item textAccount textLogout " href="logout.php">Đăng xuất khỏi tài khoản</a>
+          <a class="dropdown-item textAccount textLogout " href="../logout.php">Đăng xuất khỏi tài khoản</a>
         </div>
       </li>
     </ul>
@@ -168,7 +168,8 @@
   function GetQuestions() {
     $.ajax({
       url: 'questions.php',
-      type: 'get',
+      type: 'post', // Thay đổi type thành 'post'
+      data: { id: <?php echo $id ?>, userid: <?php echo $userid ?> }, // Truyền dữ liệu id và userid
       success: function (data) {
         questions = jQuery.parseJSON(data);
         let index = 1;

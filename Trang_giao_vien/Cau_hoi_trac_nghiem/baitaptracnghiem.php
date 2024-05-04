@@ -54,7 +54,8 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 ?>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <a class="nav-item" href="../Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
-               <a href=" ../classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
+               <a href=" ../classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học
+                    sinh</a>
                 <a href="../QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình luận</a>
             </div>
             <div id="main">
@@ -97,7 +98,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                         </svg>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item textAccount textLogout " href="logout.php">Đăng xuất khỏi tài khoản</a>
+                        <a class="dropdown-item textAccount textLogout " href="../logout.php">Đăng xuất khỏi tài khoản</a>
                     </div>
                 </li>
 
@@ -120,13 +121,13 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 <!-- ket thuc phan tim kiem -->
 
                 <!-- phan` ohan trang -->
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination" style="margin: 0px; padding-top: 0px; margin-left:10px;" id="pagination">
 
                         </ul>
                     </nav>
-                </div>
+                </div> -->
                 <!-- ket thuc phan`phan trang -->
 
                 <div class="col-md-2 text-right">
@@ -181,7 +182,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
 
         $('#btnSearch').click(function () {
             let search = $('#txtSearch').val().trim();
-            ReadData(search);
+            ReadData(search, <?php echo $id ?>);
             Pagination(search);
         });
 
@@ -297,13 +298,14 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
             });
         }
         //ham load ds cau hoi
-        function ReadData(search) {
+        function ReadData(search, id) {
             $.ajax({
                 url: 'view.php',
                 type: 'get',
                 data: {
                     search: search,
-                    page: page
+                    page: page,
+                    id: id
                 },
                 success: function (data) {
                     $('#questions').empty();
