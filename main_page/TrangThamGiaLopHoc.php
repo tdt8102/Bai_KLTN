@@ -17,8 +17,8 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
         <link rel="stylesheet" href="./css/style_request2.css">
         <script src="./js/Collapse_sidebar.js"></script>
         <link rel="stylesheet" href="./css/TrangThamGiaLopHoc.css">
-
-        <title>Document</title>
+        <link rel="icon" href="https://stf.hcmunre.edu.vn/Upload/images/brand-logo/HUNRE_Logo.png" type="image/x-icon">
+        <title>Đại học Tài Nguyên và Môi Trường Hà Nội</title>
     </head>
 
     <body>

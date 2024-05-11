@@ -17,11 +17,11 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./css/style_request2.css">
         <link rel="stylesheet" href="./css/dropdownAccount.css">
+        <link rel="stylesheet" href="./css/post.css">
         <script src="./js/Collapse_sidebar.js"></script>
         <link rel="stylesheet" href="./css/TrangThamGiaLopHoc.css">
-
-
-        <title>Document</title>
+        <link rel="icon" href="https://stf.hcmunre.edu.vn/Upload/images/brand-logo/HUNRE_Logo.png" type="image/x-icon">
+        <title>Đại học Tài Nguyên và Môi Trường Hà Nội</title>
 
     </head>
     <style>
@@ -65,7 +65,22 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                         </nav>
                     </div>
                     <div class="modal-body">
+                        <div class="form ">
+                            <div class="item_form1">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle account"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                                    <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    <path fill-rule="evenodd"
+                                        d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+                                </svg>
+                                <span></span>
+                                <a class="btn btn-primary" href="logout.php" role="button">Chuyển đổi tài khoản</a>
 
+                            </div>
+
+                        </div>
                         <div class="form">
                             <div class="item_form2">
                                 <h5>Mã lớp(class id)</h5>
@@ -139,8 +154,8 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
         <!-- Trang chính-->
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
-                <img src="HUNRE_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                Hanoi University of Natural Resources and Environment
+                <img src="./image/HUNRE_Logo.png" width="40" height="40" class="d-inline-block align-top" alt="">
+                Đại học Tài Nguyên và Môi Trường Hà Nội
             </a>
 
             <ul class="navbar-nav ml-auto">

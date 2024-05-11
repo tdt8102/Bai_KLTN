@@ -12,8 +12,9 @@
     <script src="./js/Collapse_sidebar.js"></script>
     <link rel="stylesheet" href="./css/TrangThamGiaLopHoc.css">
     <link rel="stylesheet" href="./css/Trangmonhoc.css">
-    <link rel="stylesheet" href="./css/table.css" />
-    <title>Danh sach lop</title>
+    <link rel="stylesheet" href="./css/table.css">
+    <link rel="icon" href="https://stf.hcmunre.edu.vn/Upload/images/brand-logo/HUNRE_Logo.png" type="image/x-icon">
+    <title>Đại học Tài Nguyên và Môi Trường Hà Nội</title>
 </head>
 
 <body>
@@ -45,7 +46,7 @@
         <a class="navbar-brand"
             href="TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
             <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Hanoi University of Natural Resources and Environment
+            Đại học Tài Nguyên và Môi Trường Hà Nội
         </a>
 
         <div class="topnav">
@@ -76,7 +77,7 @@
     </nav>
 
     <!--Teacher section-->
-    <h2 class=" m-auto text-warning">Teachers</h2>
+    <h2 class="m-auto text-warning">Teachers</h2>
     <?php require_once ("connect.php"); ?>
 
     <?php
@@ -90,30 +91,34 @@
         <table>
             <tr>
                 <th>Full name</th>
+                <th>Ngày sinh</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
             </tr>
 
             <?php
             while ($row = $result->fetch_assoc()) {
-                ?>
-                <tr>
-                    <td>
-                        <?php
-                        $user_id = $row['user_id'];
-                        $get_fullname = "SELECT `fullname`,`role` from `users` where `user_id` = $user_id";
-                        $result_fullname = mysqli_query($connection, $get_fullname) or die(mysqli_error($connection));
-                        $row_fullname = mysqli_fetch_array($result_fullname);
-                        if ($row_fullname[1] == 2) {
-                            echo "<p class = \"text-danger\">$row_fullname[0]</p>";
-                        }
-                        ?>
-                    </td>
-                </tr>
+                $user_id = $row['user_id'];
+                $get_user_info = "SELECT `fullname`, `birthdate`, `email`, `phone`, `role` FROM `users` WHERE `user_id` = $user_id AND `role` = 2"; // chỉ lấy thông tin của giáo viên (role = 2)
+                $result_user_info = mysqli_query($connection, $get_user_info) or die(mysqli_error($connection));
+                $row_user_info = mysqli_fetch_array($result_user_info);
 
-                <?php
+                // Kiểm tra xem có dữ liệu trả về không
+                if (mysqli_num_rows($result_user_info) > 0) {
+                    ?>
+                    <tr>
+                        <td><?php echo $row_user_info['fullname']; ?></td>
+                        <td><?php echo $row_user_info['birthdate']; ?></td>
+                        <td><?php echo $row_user_info['email']; ?></td>
+                        <td><?php echo $row_user_info['phone']; ?></td>
+                    </tr>
+                    <?php
+                }
             }
             ?>
         </table>
     </section>
+
 
     <!--Student section-->
     <h2 class="mt-5 text-success">Students</h2>
@@ -127,40 +132,36 @@
         <table>
             <tr>
                 <th>Fullname</th>
+                <th>Ngày sinh</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <!-- <th>Action</th> -->
             </tr>
 
             <?php
             while ($row = $result->fetch_assoc()) {
-                ?>
-                <tr>
-                    <td>
-                        <?php
-                        $user_id = $row['user_id'];
-                        $get_fullname = "SELECT `fullname`,`role` from `users` where `user_id` = $user_id";
-                        $result_fullname = mysqli_query($connection, $get_fullname) or die(mysqli_error($connection));
-                        $row_fullname = mysqli_fetch_array($result_fullname);
+                $user_id = $row['user_id'];
+                $get_user_info = "SELECT `fullname`, `birthdate`, `email`, `phone`, `role` FROM `users` WHERE `user_id` = $user_id AND `role` = 1"; // chỉ lấy thông tin của học sinh (role = 1)
+                $result_user_info = mysqli_query($connection, $get_user_info) or die(mysqli_error($connection));
+                $row_user_info = mysqli_fetch_array($result_user_info);
 
-                        if ($row_fullname[1] == 1) {
-                            echo $row_fullname[0];
-                        }
-
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        // Get class id and userid
-                        $id = $_GET['id'];
-                        $userid = $_GET['userid'];
-
-                        if ($row_fullname[1] == 1) {
-                            ?>
-                            <?php
-                        }
-                        ?>
-                    </td>
-                </tr>
-
-                <?php
+                // Kiểm tra xem có dữ liệu trả về không
+                if (mysqli_num_rows($result_user_info) > 0) {
+                    ?>
+                    <tr>
+                        <td><?php echo $row_user_info[0]; ?></td>
+                        <td><?php echo $row_user_info[1]; ?></td>
+                        <td><?php echo $row_user_info[2]; ?></td>
+                        <td><?php echo $row_user_info[3]; ?></td>
+                        <!-- <td>
+                            <a href="XoaHocSinh.php?fullname=<?php echo $row_user_info[0]; ?>&student_id=<?php echo $row['user_id']; ?>&id=<?php echo $id; ?>&userid=<?php echo $userid; ?>"
+                                class="btn btn-danger">Delete</a>
+                        </td> -->
+                    </tr>
+                    <?php
+                } else {
+                    // echo "<tr><td colspan='5'></td></tr>"; // Hiển thị dấu gạch nếu không có học sinh nào
+                }
             }
             ?>
         </table>

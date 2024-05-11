@@ -80,7 +80,8 @@ require ("../connect.php");
                 event.preventDefault();
                 // You can optionally add other logic here, like showing a confirmation message
                 var id = '<?php echo isset($_GET["id"]) ? $_GET["id"] : ""; ?>';
-                window.location.href = "QuanLyPost.php?id=" + id;
+                var user_id = '<?php echo isset($_GET["user_id"]) ? $_GET["user_id"] : ""; ?>'; // Thay đổi tên biến từ userid thành user_id
+                window.location.href = "QuanLyPost.php?id=" + id + "&userid=" + user_id; // Thêm dấu & sau id để phân tách id và userid
                 return false;
             }
         </script>

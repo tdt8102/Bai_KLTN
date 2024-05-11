@@ -34,3 +34,29 @@
     border: 1px solid;
     border-radius: 10px;
 }
+div.left {
+  background-color: #fbfbfb;
+  /* border: 2px solid black; */
+  padding: 0px;
+  overflow-y: scroll;
+  height: 665px;
+  border: 1px solid #333;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 25%;
+  z-index: -1;
+}
+.fixed-div{
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+.centered-div {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+
+}

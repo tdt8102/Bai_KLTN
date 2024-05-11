@@ -54,3 +54,8 @@
  h5{
     color:rgb(65, 61, 61);
 }
+div.left {
+    background-color: 	#FFA500;
+    border: 2px solid black; 
+    padding: 30px;
+}
