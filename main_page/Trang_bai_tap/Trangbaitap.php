@@ -188,7 +188,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                     </div>
                     <div class="row">
                       <div class="col-sm-12 text-center">
-                        <h4 id="mark"></h4>
+                        <h4 id="mark" class="text-info"></h4>
                       </div>
                     </div>
                   </div>
@@ -230,9 +230,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
       let mark = 0;
       $('#questions div.row').each(function (k, v) {
         //buoc 1: lay dap an dung cua cau hoi
-        let id = $(v).find('h5').attr('id');
-
-        // let id = $(v).attr('id');// lay thuoc tinh id cua the h5 = cau hoi => lay id cau hoi
+        let id = $(v).find('h5').attr('id');// lay thuoc tinh id cua the h5 = cau hoi => lay id cau hoi
         let question = questions.find(x => x.id_quest == id);// tim cau hoi trong mang question dua vao id da co o tren
         let answer = question['answer'];//lay dap an dung cua cau hoi
         // console.log(answer);
@@ -247,6 +245,9 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
           console.log('Câu có id: ' + id + ' Sai');
         }
         //buoc 3: kiem tra dap an cua nguoi dung co dung hay khong
+        console.log('fieldset#' + id + '> input.' + answer);
+        $('#question_' + id + ' > fieldset > div > label.' + answer).css("background-color", "yellow");
+
       });
       // console.log('Điểm của bạn là ' +mark);
       $('#mark').text('Điểm của bạn là ' + mark);
@@ -263,24 +264,24 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
           let d = '';
 
           $.each(questions, function (k, v) {
-            d += '<div class="row" style="display: flex; flex-direction: column; margin-left:10px;">';
+            d += '<div class="row" style="display: flex; flex-direction: column; margin-left:10px;"  id="question_' + v['id_quest'] + '">';
             d += '<h5 style="font-weight:bold;" id="' + v['id_quest'] + '"><span class="text-danger">Câu ' + index + ': </span>' + v['question'] + '</h5>';
 
-            d += '<fieldset id="group' + index + ' ">';
+            d += '<fieldset id="' + v['id_quest'] + '">';
             d += '<div class="radio col-md-12">';
-            d += '<label><input type="radio" class="A" name="group' + index + ' "><span>A: </span>' + v['option_a'] + '</label>';
+            d += '<label class="A"><input type="radio" class="A" name="' + v['id_quest'] + '"><span>A: </span>' + v['option_a'] + '</label>';
             d += '</div>';
 
             d += '<div class="radio col-md-12">';
-            d += '<label><input type="radio" class="B" name="group' + index + ' "><span>B: </span>' + v['option_b'] + '</label>';
+            d += '<label class="B"><input type="radio" class="B" name="' + v['id_quest'] + '"><span>B: </span>' + v['option_b'] + '</label>';
             d += '</div>';
 
             d += '<div class="radio col-md-12">';
-            d += '<label><input type="radio" class="C" name="group' + index + ' "><span>C: </span>' + v['option_c'] + '</label>';
+            d += '<label class="C"><input type="radio" class="C" name="' + v['id_quest'] + '"><span>C: </span>' + v['option_c'] + '</label>';
             d += '</div>';
 
             d += '<div class="radio col-md-12">';
-            d += '<label><input type="radio" class="D" name="group' + index + ' "><span>D: </span>' + v['option_d'] + '</label>';
+            d += '<label class="D"><input type="radio" class="D" name="' + v['id_quest'] + '"><span>D: </span>' + v['option_d'] + '</label>';
             d += '</div>';
             d += '</fieldset>';
             d += '</div>';
