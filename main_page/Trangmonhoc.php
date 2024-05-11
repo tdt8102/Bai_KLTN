@@ -107,49 +107,47 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
             <td width="20%" ; height="100%" valign="top" padding-top="20px" overflow-y=" scroll">
                <!-- <div class="fixed-div"> -->
                <div class="left">
-                  <div class="container-fluid">
-                     <div class="content">
-                        <h4>Danh sách lớp</h4>
-                        <div class="row">
+                  <div class="content">
+                     <h4>Danh sách lớp</h4>
+                     <div class="row">
 
-                           <?php
-                           // get class_id from class_list to view them according to user
-                           $get_classid = "SELECT `class_id` FROM `class_list` WHERE `class_list`.`user_id` = $user_id;";
-                           $result = $connection->query($get_classid);
-                           while ($row = $result->fetch_assoc()) {
-                              ?>
-                              <div class="col-xl-5item col-4item col-3item col-sm-6 cel">
-                                 <div class="ccard cardColor_shadow">
-                                    <div class="card-header border-secondary">
-                                       <h4 class="card-title">
-                                          <!--Passing username to get id from it in the next page-->
-                                          <a href="Trangmonhoc.php?id=<?php echo $row['class_id']; ?>&&userid=<?php $user_id = $_GET['userid'];
-                                             echo $user_id; ?>">
-                                             <h5 class="card-title text-info">
-                                                <?php
-                                                // get all data from table classes
-                                                $sql = "SELECT * from `classes` where `id` = $row[class_id];";
-                                                $result1 = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-                                                $row1 = mysqli_fetch_array($result1);
-                                                if (strlen($row1["class_name"]) >= 20) {
-                                                   echo mb_substr($row1["class_name"], 0, 15, 'UTF-8') . " ... ";
-                                                } else {
-                                                   echo $row1["class_name"];
-                                                }
-                                                ?>
-                                             </h5>
-                                          </a>
-                                       </h4>
-                                    </div>
+                        <?php
+                        // get class_id from class_list to view them according to user
+                        $get_classid = "SELECT `class_id` FROM `class_list` WHERE `class_list`.`user_id` = $user_id;";
+                        $result = $connection->query($get_classid);
+                        while ($row = $result->fetch_assoc()) {
+                           ?>
+                           <div class="col-xl-5item col-4item col-3item col-sm-6 cel">
+                              <div class="ccard cardColor_shadow">
+                                 <div class="card-header border-secondary">
+                                    <h4 class="card-title">
+                                       <!--Passing username to get id from it in the next page-->
+                                       <a href="Trangmonhoc.php?id=<?php echo $row['class_id']; ?>&&userid=<?php $user_id = $_GET['userid'];
+                                          echo $user_id; ?>">
+                                          <h5 class="card-title text-info">
+                                             <?php
+                                             // get all data from table classes
+                                             $sql = "SELECT * from `classes` where `id` = $row[class_id];";
+                                             $result1 = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+                                             $row1 = mysqli_fetch_array($result1);
+                                             if (strlen($row1["class_name"]) >= 20) {
+                                                echo mb_substr($row1["class_name"], 0, 15, 'UTF-8') . " ... ";
+                                             } else {
+                                                echo $row1["class_name"];
+                                             }
+                                             ?>
+                                          </h5>
+                                       </a>
+                                    </h4>
                                  </div>
                               </div>
-                              <?php
-                           }
-                           ?>
-                        </div>
+                           </div>
+                           <?php
+                        }
+                        ?>
                      </div>
+
                   </div>
-                  <!-- </div> -->
                </div>
             </td>
             <!-- phan content -->

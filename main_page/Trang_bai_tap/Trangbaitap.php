@@ -84,10 +84,15 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
               </a>
               <div class="topnav">
                 <?php
+                // Kiểm tra xem biến $_GET['userid'] có tồn tại không trước khi sử dụng
+                $userid = isset($_GET['userid']) ? $_GET['userid'] : ''; // Nếu không tồn tại, gán giá trị rỗng
                 // Get class id and userid
                 $id = $_GET['id'];
-                $userid = $_GET['userid'];
                 ?>
+                <a class="nav-item"
+                  href="../Trang_bai_tap/Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
+                           <a href=" ../classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
+                  học sinh</a>
               </div>
 
               <ul class="navbar-nav ml-auto">
@@ -234,9 +239,10 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
 
         //buoc 2: lay dap an cua nguoi dung - radio duoc check
         let choice = $(v).find('fieldset input[type="radio"]:checked').attr('class');
+
         if (choice == answer) {
-          // console.log('Câu có id: '+id+' Đúng');
-          mark += 1;//moi cau dung dc cong 2 diem
+          console.log('Câu có id: ' + id + ' Đúng');
+          mark += 1;//moi cau dung dc cong 1 diem
         } else {
           console.log('Câu có id: ' + id + ' Sai');
         }

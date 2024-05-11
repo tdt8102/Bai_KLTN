@@ -132,7 +132,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                         </svg>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item textAccount textLogout " href="logout.php">Đăng xuất khỏi
+                                        <a class="dropdown-item textAccount textLogout " href="../logout.php">Đăng xuất khỏi
                                             tài
                                             khoản</a>
                                     </div>
