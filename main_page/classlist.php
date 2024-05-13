@@ -37,7 +37,6 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
             <tr>
                 <td colspan="3">
                     <div class="fixed-div">
-                        <!--Thanh navbar-->
                         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
                             <div id="mySidebar" class="sidebar">
                                 <?php
@@ -50,7 +49,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                 <a href="./Trangmonhoc.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Trang lớp
                                     học</a>
                                 <a class="nav-item"
-                                    href="./Trang_bai_tap/Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
+                                    href="Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                         <a href=" classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học
                                     sinh</a>
                             </div>
@@ -76,7 +75,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                 $id = $_GET['id'];
                                 ?>
                                 <a class="nav-item"
-                                    href="./Trang_bai_tap/Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
+                                    href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                            <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
                                     học sinh</a>
                             </div>

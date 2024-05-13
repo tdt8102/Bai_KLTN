@@ -36,7 +36,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
       <tr>
         <td colspan="3">
           <div class="fixed-div">
-            <nav class="navbar navbar-expand-sm navbar-dark bg-info">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
               <div id="mySidebar" class="sidebar">
                 <?php
                 // Kiểm tra xem biến $_GET['userid'] có tồn tại không trước khi sử dụng
@@ -45,14 +45,10 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 $id = $_GET['id'];
                 ?>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                <a class="nav-item" href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
-                        <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách
-                  học
+                <a href="./Trangmonhoc.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Trang lớp học</a>
+                <a class="nav-item" href="Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
+                        <a href=" classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học
                   sinh</a>
-                <a href="./quan_ly_post/QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện
-                  danh
-                  sách bình
-                  luận</a>
               </div>
               <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -62,10 +58,9 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                       d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
                   </svg> </button>
               </div>
-
               <a class="navbar-brand"
                 href="TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
-                <img src="./image/HUNRE_logo.png" width="40" height="40" class="d-inline-block align-top" alt="">
+                <img src="./image/HUNRE_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 Đại học Tài Nguyên và Môi Trường Hà Nội
               </a>
               <div class="topnav">
@@ -78,20 +73,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 <a class="nav-item" href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                            <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
                   học sinh</a>
-                <a href="./quan_ly_post/QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh
-                  sách bình luận</a>
               </div>
-              <!-- <div class="topnav">
-               <?php
-               // Kiểm tra xem biến $_GET['userid'] có tồn tại không trước khi sử dụng
-               $userid = isset($_GET['userid']) ? $_GET['userid'] : ''; // Nếu không tồn tại, gán giá trị rỗng
-               // Get class id and userid
-               $id = $_GET['id'];
-               ?>
-               <a class="nav-item" href="Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
-               <a href="classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
-               <a href="QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình luận</a>
-            </div> -->
 
               <ul class="navbar-nav ml-auto">
 
@@ -175,23 +157,23 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                   <div class="form ">
                     <div class="item_form1">
                       <div class="dropdown">
-                        <button class="btn btn-info dropdown-toggle" style="" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-dark dropdown-toggle" style="" type="button" id="dropdownMenuButton"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          + Tạo bài tập
+                          Xem bài tập
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <a class="dropdown-item"
-                            href="./Cau_hoi_trac_nghiem/baitaptracnghiem.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trắc nghiệm</a>
+                            href="./Trang_bai_tap/Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trắc nghiệm</a>
                         <!-- <a class=" dropdown-item" href="#">Bài tập kiểm tra</a> -->
                           <a class="dropdown-item"
                             href="./tai_lieu/trang_tai_lieu.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Tài liệu</a>
                         </div>
                       </div>
                       <b>
-                        <p class=" text-info">Chỉ định bài tập cho lớp học tại đây</p>
+                        <p class=" text-dark">Xem bài tập cho lớp học tại đây</p>
                             </b>
-                            <p> Sử dụng chủ đề để sắp xếp bài tập trên lớp vào các mô-đun hoặc đơn vị</p>
-                            <p> Sắp xếp bài tập theo cách bạn muốn học sinh nhìn thấy</p>
+                            <p> Sử dụng để xem bài tập trắc nghiệm có trong lớp </p>
+                            <p> Sử dụng để tải xuống tài liệu được giảng viên giao</p>
                         </div>
                       </div>
                     </div>
