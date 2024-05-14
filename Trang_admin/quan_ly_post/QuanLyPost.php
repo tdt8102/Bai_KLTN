@@ -250,6 +250,6 @@ if ($_SESSION["email"]) {
 
     <?php
 } else {
-    header("Location: ../sign_up_in/Login.php");
+    header("Location: .../sign_up_in/Login.php");
 }
 ?>

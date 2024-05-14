@@ -12,7 +12,8 @@ hr{
 .form-control{
     border: 2px inset;
     border-radius: 10px;
-    
+    padding: 0;
+    height: auto;
 }
 .auto_height { /* CSS */
     width: 100%;
@@ -48,3 +49,4 @@ hr{
   margin: auto;
   margin-bottom: 20px;
  }
+ 

@@ -58,7 +58,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                             </div>
 
                             <a class="navbar-brand"
-                                href="TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
+                                href="../TrangNguoiDung.php?username=<?php echo isset($_GET['username']) ? $_GET['username'] : ''; ?>&userid=<?php echo isset($_GET['userid']) ? $_GET['userid'] : ''; ?>">
                                 <img src="../image/HUNRE_logo.png" width="40" height="40" class="d-inline-block align-top"
                                     alt="">
                                 Đại học Tài Nguyên và Môi Trường Hà Nội
@@ -211,6 +211,6 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
     </html>
     <?php
 } else {
-    header("Location: ../sign_up_in/Login.php");
+    header("Location: .../sign_up_in/Login.php");
 }
 ?>

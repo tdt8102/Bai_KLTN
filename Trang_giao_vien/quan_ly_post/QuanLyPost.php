@@ -238,6 +238,6 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
     </script>
     <?php
 } else {
-    header("Location: ../sign_up_in/Login.php");
+    header("Location: .../sign_up_in/Login.php");
 }
 ?>

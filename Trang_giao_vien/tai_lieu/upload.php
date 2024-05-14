@@ -42,6 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         echo "Không có file nào được tải lên.";
+        // Lấy id và userid từ URL để chuyển hướng
+        $user_id = isset($_GET['userid']) ? $_GET['userid'] : null;
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+        header("Location: trang_tai_lieu.php?id=$id&userid=$user_id");
+        exit;
     }
 }
 ?>
