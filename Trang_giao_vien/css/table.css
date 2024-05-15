@@ -1,10 +1,10 @@
 /*Lines from T-Bone*/
 /*style for the table*/
-table {
+/* table {
   margin: 50px auto;
   border: 1px solid black;
   width: auto;
-}
+} */
 
 /*styling for each th and td for headers*/
 th {
@@ -32,4 +32,17 @@ margin: 10px auto;
 
 form > div > div{
 margin-top: 10px;
+}
+.d-flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.align-items-center {
+  align-items: center;
+}
+.gap-5 {
+  gap: 5px;
+}
+.mb-0 {
+  margin-bottom: 0;
 }

@@ -85,8 +85,6 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                         </svg>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Tài khoản của tôi</a>
-                        <a class="dropdown-item" href="#">Đăng nhập bằng tài khoản khác</a>
                         <a class="dropdown-item" href="../logout.php">Đăng xuất</a>
                     </div>
                 </li>
@@ -120,10 +118,12 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                     <td><?php echo $row['filetype']; ?></td>
                                     <td><?php echo $row['upload_date']; ?></td>
                                     <td>
-                                        <a href="<?php echo $file_path; ?>" class="btn btn-primary" download>Tải
-                                            xuống</a>
-                                        <a href="delete.php?id=<?php echo $row['id']; ?>&userid=<?php echo $userid; ?>"
-                                            class="btn btn-danger">Xóa</a>
+                                        <div style="white-space: nowrap;">
+                                            <a href="<?php echo $file_path; ?>" class="btn btn-primary" download>Tải
+                                                xuống</a>
+                                            <a href="delete.php?id=<?php echo $row['id']; ?>&userid=<?php echo $userid; ?>"
+                                                class="btn btn-danger">Xóa</a>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php

@@ -148,11 +148,11 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                             <h2>Tải file lên</h2>
                             <form action="upload.php?id=<?php echo $id; ?>&userid=<?php echo $userid; ?>" method="POST"
                                 enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="file" class="form-label">Chọn file</label>
-                                    <input type="file" class="form-control" name="file" id="file">
+                                <div class="mb-3 d-flex align-items-center gap-5">
+                                    <label for="file" class="form-label mb-0">Chọn file</label>
+                                    <input type="file" class="form-control" name="file" id="file" style="flex: 1;">
+                                    <button type="submit" class="btn btn-primary">Tải lên</button>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Tải lên</button>
                             </form>
 
                             <h2>Tải xuống file</h2>
@@ -182,10 +182,12 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                                 <td><?php echo $row['filetype']; ?></td>
                                                 <td><?php echo $row['upload_date']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo $file_path; ?>" class="btn btn-primary" download>Tải
-                                                        xuống</a>
-                                                    <a href="delete.php?id=<?php echo $row['id']; ?>&class_id=<?php echo $class_id; ?>&userid=<?php echo $userid; ?>"
-                                                        class="btn btn-danger">Xóa</a>
+                                                    <div style="white-space: nowrap;">
+                                                        <a href="<?php echo $file_path; ?>" class="btn btn-primary" download>Tải
+                                                            xuống</a>
+                                                        <a href="delete.php?id=<?php echo $row['id']; ?>&class_id=<?php echo $class_id; ?>&userid=<?php echo $userid; ?>"
+                                                            class="btn btn-danger">Xóa</a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <?php

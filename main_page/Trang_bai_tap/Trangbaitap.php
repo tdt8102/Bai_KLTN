@@ -18,7 +18,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hunre classroom</title>
+    <title>Đại học Tài Nguyên và Môi Trường Hà Nội</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

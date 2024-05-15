@@ -7,9 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Check if the file is allowed (bạn có thể sửa đổi để chỉ cho phép các loại file cụ thể)
-        $allowed_types = array("jpg", "jpeg", "png", "gif", "pdf");
+        $allowed_types = array("jpg", "jpeg", "png", "gif", "pdf", "pptx", "docx", "doc", "xlsx");
         if (!in_array($file_type, $allowed_types)) {
-            echo "Xin lỗi, chỉ các file JPG, JPEG, PNG, GIF và PDF được phép.";
+            echo "Xin lỗi, chỉ các file JPG, JPEG, PNG, GIF, DOC, XLSX, PP và PDF được phép.";
         } else {
             // Di chuyển file đã tải lên vào thư mục được chỉ định
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {

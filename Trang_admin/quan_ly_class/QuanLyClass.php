@@ -20,9 +20,8 @@ if ($_SESSION["email"]) {
         <link rel="stylesheet" href="../css/Trangmonhoc.css">
         <link rel="stylesheet" href="../css/TrangThamGiaLopHoc.css" />
         <script src="../js/Collapse_sidebar.js"></script>
-
-        <title>Quản lý lớp học</title>
-
+        <link rel="icon" href="https://stf.hcmunre.edu.vn/Upload/images/brand-logo/HUNRE_Logo.png" type="image/x-icon">
+        <title>Đại học Tài Nguyên và Môi Trường Hà Nội</title>
     </head>
 
     <body>
