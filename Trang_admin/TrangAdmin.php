@@ -18,6 +18,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
         <link rel="stylesheet" href="./css/style_request2.css" />
         <link rel="stylesheet" href="./css/table.css" />
         <link rel="stylesheet" href="./css/TrangThamGiaLopHoc.css" />
+        <link rel="stylesheet" href="./css/Trangmonhoc.css">
         <script src="./js/Collapse_sidebar.js"></script>
 
         <title>Đại học Tài Nguyên và Môi Trường Hà Nội</title>
@@ -151,6 +152,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 <a href="TrangAdmin.php">Quản lý Users</a>
                 <a href="./quan_ly_class/QuanLyClass.php">Quản lý Classes</a>
                 <a href="./quan_ly_post/QuanLyPost.php">Quản lý Posts</a>
+                <a href="./tai_lieu/trang_tai_lieu.php">Quản lý Tài liệu</a>
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -164,7 +166,12 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 <img src="image/cap-1.png" width="35" height="35" class="d-inline-block align-top" alt="">
                 Admin Panel
             </a>
-
+            <div class="topnav">
+                <a href="./TrangAdmin.php">Quản lý Users</a>
+                <a href="./quan_ly_class/QuanLyClass.php">Quản lý Classes</a>
+                <a href="./quan_ly_post/QuanLyPost.php">Quản lý Posts</a>
+                <a href="./tai_lieu/trang_tai_lieu.php">Quản lý Tài liệu</a>
+            </div>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link Join" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"

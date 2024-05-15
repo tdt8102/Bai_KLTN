@@ -17,6 +17,7 @@ if ($_SESSION["email"]) {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="../css/style_request2.css" />
         <link rel="stylesheet" href="../css/table.css" />
+        <link rel="stylesheet" href="../css/Trangmonhoc.css">
         <link rel="stylesheet" href="../css/TrangThamGiaLopHoc.css" />
         <script src="../js/Collapse_sidebar.js"></script>
 
@@ -150,6 +151,7 @@ if ($_SESSION["email"]) {
                 <a href="../TrangAdmin.php">Quản lý Users</a>
                 <a href="../quan_ly_class/QuanLyClass.php">Quản lý Classes</a>
                 <a href="../quan_ly_post/QuanLyPost.php">Quản lý Posts</a>
+                <a href="../tai_lieu/trang_tai_lieu.php">Quản lý Tài liệu</a>
             </div>
             <div id="main">
                 <button class="openbtn" onclick="openNav()">
@@ -163,7 +165,12 @@ if ($_SESSION["email"]) {
                 <img src="../image/cap-1.png" width="35" height="35" class="d-inline-block align-top" alt="">
                 Admin Panel
             </a>
-
+            <div class="topnav">
+                <a href="../TrangAdmin.php">Quản lý Users</a>
+                <a href="../quan_ly_class/QuanLyClass.php">Quản lý Classes</a>
+                <a href="../quan_ly_post/QuanLyPost.php">Quản lý Posts</a>
+                <a href="../tai_lieu/trang_tai_lieu.php">Quản lý Tài liệu</a>
+            </div>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <!-- <a class="nav-link Join"href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" title="Tạo hoặc tham gia vào lớp học"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

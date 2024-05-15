@@ -174,7 +174,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                     $result = $connection->query($sql);
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
-                                            $file_path = "uploads/" . $row['filename'];
+                                            $file_path = "../../Trang_giao_vien/tai_lieu/uploads/" . $row['filename'];
                                             ?>
                                             <tr>
                                                 <td><?php echo $row['filename']; ?></td>
