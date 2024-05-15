@@ -212,7 +212,6 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                                 <button
                                                     onclick="confirmDelete(<?php echo $row['id_cmt']; ?>, '<?php echo $row['post_content']; ?>', <?php echo $row['class_id']; ?>, <?php echo $row['user_id']; ?>)"
                                                     class="btn btn-danger">Delete</button>
-
                                             </td>
                                         </tr>
 

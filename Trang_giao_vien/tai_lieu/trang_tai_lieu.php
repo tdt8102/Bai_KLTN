@@ -87,7 +87,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                         </svg>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item textAccount textLogout " href="logout.php">Đăng xuất khỏi
+                                        <a class="dropdown-item textAccount textLogout " href="../logout.php">Đăng xuất khỏi
                                             tài khoản</a>
                                     </div>
                                 </li>
@@ -184,9 +184,8 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                                 <td>
                                                     <a href="<?php echo $file_path; ?>" class="btn btn-primary" download>Tải
                                                         xuống</a>
-                                                    <a href="<?php echo $file_path; ?>" class="btn btn-warning" download>Sửa</a>
-                                                    <a href="<?php echo $file_path; ?>" class="btn btn-danger" download>
-                                                        Xóa</a>
+                                                    <a href="delete.php?id=<?php echo $row['id']; ?>&class_id=<?php echo $class_id; ?>&userid=<?php echo $userid; ?>"
+                                                        class="btn btn-danger">Xóa</a>
                                                 </td>
                                             </tr>
                                             <?php
