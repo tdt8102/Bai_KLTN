@@ -31,11 +31,14 @@ require ("../connect.php");
 <body>
 
     <!--Form for admin to insert into sql table-->
-    <div class="item_form1">
+    <div class="item_form1" style="    padding: 60px;
+    /* text-align: center; */
+    margin: 20px 0 12px 0;
+    position: relative;">
         <form method="post"
             action="EditPost_function.php?id_cmt=<?php echo $_GET['id_cmt'] ?>&post_content=<?php echo $_GET['post_content'] ?>&id=<?php echo $_GET['id']; ?>&user_id=<?php echo $_GET['user_id']; ?>">
 
-            <div class="container item_form1">
+            <div class="item_form1">
                 <h2>
                     Update for
                     <?php

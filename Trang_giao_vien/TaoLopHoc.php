@@ -13,7 +13,10 @@
 </head>
 
 <body>
-    <div class="">
+    <div class="item_form1" style="    padding: 60px;
+    /* text-align: center; */
+    margin: 20px 0 12px 0;
+    position: relative;">
         <?php
 
         // Assign userid
@@ -21,7 +24,7 @@
         ?>
         <form action="processTrangNguoiDung.php?userid=<?php echo $user_id; ?>" method="POST"
             enctype="multipart/form-data">
-            <div class="container">
+            <div class="item_form1">
                 <?php
                 $id = "";
                 $class_name = "";

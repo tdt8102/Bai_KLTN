@@ -11,12 +11,15 @@
 </head>
 
 <body>
-    <div class="">
+    <div class="item_form1" style="    padding: 60px;
+    /* text-align: center; */
+    margin: 20px 0 12px 0;
+    position: relative;">
         <form action="EditLopHoc_function.php?id=<?php echo htmlspecialchars($_GET['id'] ?? '', ENT_QUOTES); ?> 
             &username=<?php echo htmlspecialchars($_GET['username'] ?? '', ENT_QUOTES); ?>
             &userid=<?php echo htmlspecialchars($_GET['userid'] ?? '', ENT_QUOTES); ?>" method="POST"
             enctype="multipart/form-data">
-            <div class="container">
+            <div class="item_form1">
                 <?php
                 $id = $_GET['id'] ?? '';
                 $class_name = "";
