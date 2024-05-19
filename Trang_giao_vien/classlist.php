@@ -82,7 +82,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                 <a class="nav-item"
                                     href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                            <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
-                                    học sinh</a>
+                                    sinh viên</a>
                                 <a href="./quan_ly_post/QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh
                                     sách bình luận</a>
                             </div>
@@ -94,7 +94,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                $id = $_GET['id'];
                ?>
                <a class="nav-item" href="Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
-               <a href="classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
+               <a href="classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách sinh viên</a>
                <a href="QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình luận</a>
             </div> -->
 
@@ -244,7 +244,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                     <?php
                                     while ($row = $result->fetch_assoc()) {
                                         $user_id = $row['user_id'];
-                                        $get_user_info = "SELECT `fullname`, `birthdate`, `email`, `phone`, `role` FROM `users` WHERE `user_id` = $user_id AND `role` = 1"; // chỉ lấy thông tin của học sinh (role = 1)
+                                        $get_user_info = "SELECT `fullname`, `birthdate`, `email`, `phone`, `role` FROM `users` WHERE `user_id` = $user_id AND `role` = 1"; // chỉ lấy thông tin của sinh viên (role = 1)
                                         $result_user_info = mysqli_query($connection, $get_user_info) or die(mysqli_error($connection));
                                         $row_user_info = mysqli_fetch_array($result_user_info);
 
@@ -257,13 +257,14 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                                 <td><?php echo $row_user_info[2]; ?></td>
                                                 <td><?php echo $row_user_info[3]; ?></td>
                                                 <td>
-                                                    <a href="XoaHocSinh.php?fullname=<?php echo $row_user_info[0]; ?>&student_id=<?php echo $row['user_id']; ?>&id=<?php echo $id; ?>&userid=<?php echo $userid; ?>"
-                                                        class="btn btn-danger">Delete</a>
+                                                    <button
+                                                        onclick="confirmDelete('<?php echo $row_user_info[0]; ?>', '<?php echo $row['user_id']; ?>', <?php echo $id; ?>, <?php echo $userid; ?>)"
+                                                        class="btn btn-danger">Delete</button>
                                                 </td>
                                             </tr>
                                             <?php
                                         } else {
-                                            // echo "<tr><td colspan='5'></td></tr>"; // Hiển thị dấu gạch nếu không có học sinh nào
+                                            // echo "<tr><td colspan='5'></td></tr>"; // Hiển thị dấu gạch nếu không có sinh viên nào
                                         }
                                     }
                                     ?>
@@ -278,6 +279,13 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
     </body>
 
     </html>
+    <script>
+        function confirmDelete(fullname, user_id, id, userid) {
+            if (confirm("Bạn có chắc chắn muốn xóa Sinh viên này không?")) {
+                window.location.href = "XoaHocSinh.php?fullname=" + fullname + "&student_id=" + user_id + "&id=" + id + "&userid=" + userid;
+            }
+        }
+    </script>
     <?php
 } else {
     header("Location: ../sign_up_in/Login.php");

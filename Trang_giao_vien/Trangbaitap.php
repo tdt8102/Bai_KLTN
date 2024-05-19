@@ -77,7 +77,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 ?>
                 <a class="nav-item" href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                            <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
-                  học sinh</a>
+                  sinh viên</a>
                 <a href="./quan_ly_post/QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh
                   sách bình luận</a>
               </div>
@@ -89,7 +89,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                $id = $_GET['id'];
                ?>
                <a class="nav-item" href="Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
-               <a href="classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách học sinh</a>
+               <a href="classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách sinh viên</a>
                <a href="QuanLyPost.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Hiện danh sách bình luận</a>
             </div> -->
 
@@ -191,7 +191,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                         <p class=" text-info">Chỉ định bài tập cho lớp học tại đây</p>
                             </b>
                             <p> Sử dụng chủ đề để sắp xếp bài tập trên lớp vào các mô-đun hoặc đơn vị</p>
-                            <p> Sắp xếp bài tập theo cách bạn muốn học sinh nhìn thấy</p>
+                            <p> Sắp xếp bài tập theo cách bạn muốn sinh viên nhìn thấy</p>
                         </div>
                       </div>
                     </div>

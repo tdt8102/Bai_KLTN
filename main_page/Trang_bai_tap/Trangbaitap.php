@@ -91,7 +91,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                 ?>
                 <a class="nav-item" href="../Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                            <a href=" ../classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
-                  học sinh</a>
+                  sinh viên</a>
               </div>
 
               <ul class="navbar-nav ml-auto">

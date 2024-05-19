@@ -73,7 +73,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                         ?>
                         <a class="nav-item" href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                            <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
-                           học sinh</a>
+                           sinh viên</a>
                      </div>
 
                      <ul class="navbar-nav ml-auto">
@@ -229,6 +229,11 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                     d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
                               </svg>
                               <p class="p1">
+                              <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id ?>"
+                                 method="post" enctype="multipart/form-data">
+                                 <input type="text" name="noidung">
+                                 <button type="submit" class="btn btn-info">Gửi</button>
+                              </form>
                               <p class="c">
                                  <?php
                                  $user_id = isset($_GET["userid"]) ? $_GET["userid"] : null;
@@ -261,12 +266,8 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                     echo "<br>";
                                  }
                                  ?>
-                              <form action="them_binhluan.php?id=<?php echo $id ?> && userid=<?php echo $user_id ?>"
-                                 method="post" enctype="multipart/form-data">
-                                 <input type="text" name="noidung">
-                                 <button type="submit" class="btn btn-info">Gửi</button>
-                              </form>
-                              <!-- <?php echo $row["post_content"] ?> -->
+
+                                 <!-- <?php echo $row["post_content"] ?> -->
                               </p>
                               </p>
                               <!-- test binh luan -->

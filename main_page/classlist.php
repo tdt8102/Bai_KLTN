@@ -77,7 +77,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                 <a class="nav-item"
                                     href="./Trangbaitap.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>"">Bài tập trên lớp</a>
                            <a href=" ./classlist.php?id=<?php echo $id ?>&&userid=<?php echo $userid ?>">Danh sách
-                                    học sinh</a>
+                                    sinh viên</a>
                             </div>
 
                             <ul class="navbar-nav ml-auto">
@@ -223,7 +223,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                     <?php
                                     while ($row = $result->fetch_assoc()) {
                                         $user_id = $row['user_id'];
-                                        $get_user_info = "SELECT `fullname`, `birthdate`, `email`, `phone`, `role` FROM `users` WHERE `user_id` = $user_id AND `role` = 1"; // chỉ lấy thông tin của học sinh (role = 1)
+                                        $get_user_info = "SELECT `fullname`, `birthdate`, `email`, `phone`, `role` FROM `users` WHERE `user_id` = $user_id AND `role` = 1"; // chỉ lấy thông tin của sinh viên (role = 1)
                                         $result_user_info = mysqli_query($connection, $get_user_info) or die(mysqli_error($connection));
                                         $row_user_info = mysqli_fetch_array($result_user_info);
 
@@ -242,7 +242,7 @@ if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
                                             </tr>
                                             <?php
                                         } else {
-                                            // echo "<tr><td colspan='5'></td></tr>"; // Hiển thị dấu gạch nếu không có học sinh nào
+                                            // echo "<tr><td colspan='5'></td></tr>"; // Hiển thị dấu gạch nếu không có sinh viên nào
                                         }
                                     }
                                     ?>
